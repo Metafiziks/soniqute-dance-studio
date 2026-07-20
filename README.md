@@ -1,5 +1,7 @@
 # PaMs Dance Studio
 
+![Workflow diagram](docs/workflow.svg)
+
 An AI-powered dance video generation experience built for holders of the PaMs NFT collection. Users connect their Ethereum wallet, verify NFT ownership, choose a dance vibe, and the platform generates a personalized AI dance video featuring their character — complete with music tracks and synchronized lyrics overlays.
 
 ## What it does
