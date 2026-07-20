@@ -28,7 +28,7 @@
   <text x="24" y="132" font-size="10" fill="#34d399" font-weight="600" letter-spacing="1">USER SELECTION</text>
 
   <rect x="10" y="214" width="760" height="140" rx="10" fill="#431407" opacity="0.20"/>
-  <text x="24" y="234" font-size="10" fill="#fb923c" font-weight="600" letter-spacing="1">AI VIDEO GENERATION  —  WaveSpeed Seedance v1.5 Pro</text>
+  <text x="24" y="234" font-size="10" fill="#fb923c" font-weight="600" letter-spacing="1">AI VIDEO GENERATION  —  WaveSpeed Seedance 2.0</text>
 
   <rect x="10" y="366" width="760" height="140" rx="10" fill="#1a1244" opacity="0.18"/>
   <text x="24" y="386" font-size="10" fill="#a78bfa" font-weight="600" letter-spacing="1">VIDEO PIPELINE  —  FFmpeg + Shotstack</text>
