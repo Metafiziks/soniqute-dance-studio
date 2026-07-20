@@ -1,0 +1,44 @@
+{
+  "name": "pams-dance-studio-backend",
+  "version": "1.0.0",
+  "description": "Express.js API server for the PaMs Dance Studio — AI-powered video generation for NFT holders",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "mongodb",
+    "nft",
+    "ai-video",
+    "dance-studio"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "@google-cloud/storage": "^6.12.0",
+    "@google-cloud/video-intelligence": "^6.2.1",
+    "argon2": "^0.44.0",
+    "axios": "^1.13.4",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "ethers": "^5.8.0",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.5.1",
+    "fluent-ffmpeg": "^2.1.3",
+    "form-data": "^4.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.2",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

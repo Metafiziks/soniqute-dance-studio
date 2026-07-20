@@ -1,0 +1,1525 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body { height: 100%; }
+body { background: #0C060A; color: #fff; }
+
+:root {
+  --font-mplus: "M PLUS Code Latin", monospace;
+}
+
+.font-mplus {
+  font-family: var(--font-mplus);
+}
+
+/* Utility helpers */
+.container-padding { @apply px-4 sm:px-6 lg:px-8; }
+.maxw { @apply max-w-7xl mx-auto; }
+
+/* Glow helpers */
+.glow { box-shadow: 0 0 24px rgba(124,77,255,0.45); }
+.glow-soft { box-shadow: 0 0 40px rgba(0,230,168,0.25); }
+
+/* Nav height compensation (prevents hero from sitting under navbar) */
+:root { --nav-h: 96px; }
+main { padding-top: 0; }
+
+/* === SoniQute Title FX — subtle gradient + glow, no sheen/sparkles === */
+@keyframes sq-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.sq-title {
+  background-image: linear-gradient(90deg,
+    #cfa9ff 0%,
+    #ff8bd3 35%,
+    #89d3ff 70%,
+    #cfa9ff 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* slower, gentle loop */
+  animation: sq-shift 14s ease-in-out infinite;
+
+  /* soft outer glow only */
+  filter: drop-shadow(0 0 8px rgba(207,169,255,.25))
+          drop-shadow(0 0 14px rgba(137,211,255,.18));
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sq-title { animation: none; }
+}
+
+/* tone variables */
+.tone-plum    { --glow: linear-gradient(180deg,#6f2a7c,#a04bd6); }
+.tone-violet  { --glow: linear-gradient(180deg,#7b5cff,#9ed6ff); }
+.tone-magenta { --glow: linear-gradient(180deg,#ff6ac6,#ff84ef); }
+
+/* A tad larger body text */
+.body-lg p { font-size: 18px; line-height: 1.75; }
+@media (min-width:768px){ .body-lg p { font-size: 20px; } }
+@media (min-width:1280px){ .body-lg p { font-size: 21px; } }
+
+/* ===============================
+   GLOBAL SEAMLESS BACKGROUND
+   =============================== */
+body {
+  background: #0C060A;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.global-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background: radial-gradient(1600px at 50% 10%, #1a0e1f 0%, #0C060A 70%, #000 100%);
+}
+
+/* ===== Seamless section blend (no hard edges) ===== */
+.section-blend {
+  --feather: 140px; /* try 120–200px to taste */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black var(--feather),
+    black calc(100% - var(--feather)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black var(--feather),
+    black calc(100% - var(--feather)),
+    transparent 100%
+  );
+}
+
+/* Top/bottom fade into the global body color (#0C060A) */
+.section-blend::before,
+.section-blend::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 160px;
+  pointer-events: none;
+  z-index: 3;                 /* above bg + vignette, below content */
+}
+.section-blend::before {
+  top: -200px;
+  height: 200px;
+  background: linear-gradient(to bottom, #1A0E1F 0%, transparent 100%);
+}
+.section-blend::after {
+  bottom: -200px;
+  height: 200px;
+  background: linear-gradient(to top, #1A0E1F 0%, transparent 100%);
+}
+
+.hero-blend {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-blend::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 220px; /* fade height — adjust if needed */
+  background: linear-gradient(
+    to bottom,
+    rgba(12,6,10,0) 0%,      /* transparent */
+    rgba(12,6,10,0.4) 40%,   /* gentle mid fade */
+    #0C060A 100%             /* body color */
+  );
+  z-index: 2; /* above the image, below content */
+  pointer-events: none;
+}
+
+/* ==== Hero blend — angled sweep (top-left ➜ bottom) ==== */
+.hero-blend--angle {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero-blend--angle::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 0;
+  pointer-events: none;
+  z-index: 2;
+  /* 105deg leans the fade toward bottom-right to match the arc */
+  background: linear-gradient(
+    105deg,
+    rgba(12,6,10,0) 0%,
+    rgba(12,6,10,0.08) 40%,
+    rgba(12,6,10,0.28) 62%,
+    #0C060A 88%
+  );
+}
+/* ==== Hero blend — offset radial spotlight ==== */
+.hero-blend--radial {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero-blend--radial::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  /* center low and slightly right so it bleeds into the next section */
+  background: radial-gradient(
+    1200px 700px at 65% 88%,
+    rgba(12,6,10,0) 0%,
+    rgba(12,6,10,0.18) 55%,
+    rgba(12,6,10,0.42) 78%,
+    #0C060A 100%
+  );
+}
+
+/* Background artwork layer */
+.bg-layer {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1;
+  transform: scale(1.06);           /* gentle bleed */
+  transform-origin: center;
+  filter: saturate(1.02);           /* optional: tiny richness */
+}
+.bg-layer.flip {              /* mirror for "The Solution" */
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+/* Subtle vignette ON TOP of the background art (still under content) */
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;                 /* above bg, below fades + content */
+  background: radial-gradient(1200px 800px at 65% 35%,
+              rgba(0,0,0,0) 0%,
+              rgba(0,0,0,.28) 65%,
+              rgba(0,0,0,.42) 100%);
+}
+
+/* Utility: make inner containers clearly above everything */
+.z-content { z-index: 10; position: relative; }
+
+/* ===== Water-float animation (gentle bob + tiny sway) ===== */
+@keyframes sq-bob-1 {
+  0%   { transform: translateY(0px) translateX(0px) rotate(0deg) }
+  25%  { transform: translateY(-10px) translateX(2px) rotate(-0.2deg) }
+  50%  { transform: translateY(0px) translateX(0px) rotate(0.1deg) }
+  75%  { transform: translateY(-7px) translateX(-2px) rotate(0deg) }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg) }
+}
+@keyframes sq-bob-2 {
+  0%   { transform: translateY(0px) translateX(0px) rotate(0deg) }
+  20%  { transform: translateY(-8px) translateX(-2px) rotate(0.15deg) }
+  50%  { transform: translateY(0px) translateX(1px) rotate(-0.1deg) }
+  80%  { transform: translateY(-12px) translateX(2px) rotate(0deg) }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg) }
+}
+
+/* Apply + vary timing so they’re not in sync */
+.float-water-1 {
+  animation: sq-bob-1 10s ease-in-out infinite;
+  will-change: transform;
+}
+.float-water-2 {
+  animation: sq-bob-2 12.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Optional: pause float while hovering (nice for reading) */
+.float-water-1:hover,
+.float-water-2:hover {
+  animation-play-state: paused;
+}
+
+/* Optional: a faint specular sparkle that pulses very subtly */
+.float-water-shine::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background:
+    radial-gradient(120px 90px at 70% 20%, rgba(255,255,255,.15), transparent 60%),
+    radial-gradient(180px 120px at 20% 80%, rgba(255,180,255,.10), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: .35;
+  animation: shinePulse 6s ease-in-out infinite;
+}
+@keyframes shinePulse {
+  0%,100% { opacity: .28; transform: scale(1) }
+  50%     { opacity: .42; transform: scale(1.01) }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .float-water-1, .float-water-2 { animation: none; }
+}
+
+
+/* ===============================
+   SOFT PASTEL SPOTLIGHTS
+   =============================== */
+.spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 600px at var(--spot-x, 35%) var(--spot-y, 35%),
+      rgba(207,169,255,0.22), rgba(207,169,255,0) 70%),
+    radial-gradient(1000px 700px at var(--spot2-x, 70%) var(--spot2-y, 70%),
+      rgba(255,145,215,0.18), rgba(255,145,215,0) 72%);
+  mix-blend-mode: screen;
+  filter: blur(40px);
+  opacity: 0.9;
+}
+
+/* Make sure section content is above */
+.section-blend > :not(.bg-layer):not(.vignette):not(.spotlight) {
+  position: relative;
+  z-index: 10;
+}
+
+
+/* Larger body text helper */
+.body-lg p { font-size: 18px; line-height: 1.75; }
+@media (min-width:768px){ .body-lg p { font-size: 20px; } }
+@media (min-width:1280px){ .body-lg p { font-size: 21px; } }
+
+/* Card glow presets — pastel tones + hover glow */
+.card-glow { position: relative; border-radius: 28px; }
+.card-glow::before {
+  content: ""; position: absolute; inset: -2px; border-radius: inherit; z-index: 0;
+  background: var(--glow, linear-gradient(180deg,#fff,#fff));
+  filter: blur(14px); opacity: .28; transition: opacity .25s ease, filter .25s ease, transform .25s ease;
+  transform: scale(.98);
+}
+.card-surface {
+  position: relative;
+  z-index: 1;
+  border-radius: 28px;
+  background: rgba(60, 40, 80, 0.35);
+  backdrop-filter: blur(10px) brightness(1.2) saturate(1.25);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: transform .25s ease, border-color .25s ease, background-color .25s ease;
+}
+
+.card-glow:hover::before { opacity: .55; filter: blur(18px); transform: scale(1); }
+
+.card-glow:hover::before {
+  animation: cardGradientShift 6s ease-in-out infinite alternate;
+}
+@keyframes cardGradientShift {
+  0%   { filter: blur(20px) brightness(1.1) hue-rotate(0deg); }
+  50%  { filter: blur(22px) brightness(1.25) hue-rotate(20deg); }
+  100% { filter: blur(20px) brightness(1.1) hue-rotate(-20deg); }
+}
+
+.card-glow:hover .card-surface{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.36);
+  box-shadow:
+    0 16px 48px rgba(180,140,255,.36),
+    inset 0 0 0 1px rgba(255,255,255,.10);
+}
+
+/* 🎨 Vibrant pastel sets (pink / violet / sky blue) */
+.tone-plum   { --c1:#FFD4F2; --c2:#D9B3FF; --c3:#B5E4FF; }
+.tone-violet { --c1:#E7CDFF; --c2:#BFD4FF; --c3:#9FEFFF; }
+.tone-magenta{ --c1:#FFC7EA; --c2:#FFA2DB; --c3:#D6B3FF; }
+
+/* ===== Ritual cards (SoniQute pastel) ===== */
+.ritual-card{
+  position: relative;
+  border-radius: 24px;
+  padding: 20px 18px;
+  text-align: center;
+  isolation: isolate;
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06)); /* fallback */
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.25),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+  backdrop-filter: blur(8px) saturate(1.2);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.ritual-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,.28);
+  box-shadow:
+    0 16px 44px rgba(0,0,0,.32),
+    0 0 40px var(--ritual-glow, rgba(207,169,255,.25));
+}
+
+/* luminous surface using SoniQute pastels (pink/purple/sky) */
+.ritual-pink{
+  --c1:#FFC7EA; --c2:#FF9AD6; --c3:#FFD9F4; --ritual-glow: rgba(255,154,214,.35);
+  background:
+    radial-gradient(120% 80% at 50% -20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg,var(--c1),var(--c2) 55%,var(--c3));
+}
+.ritual-violet{
+  --c1:#E7CDFF; --c2:#CFA9FF; --c3:#BBD0FF; --ritual-glow: rgba(207,169,255,.35);
+  background:
+    radial-gradient(120% 80% at 50% -20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg,var(--c1),var(--c2) 55%,var(--c3));
+}
+.ritual-sky{
+  --c1:#BEE8FF; --c2:#9FDFFF; --c3:#E3F6FF; --ritual-glow: rgba(159,223,255,.35);
+  background:
+    radial-gradient(120% 80% at 50% -20%, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg,var(--c1),var(--c2) 55%,var(--c3));
+}
+
+/* badge + title accents that match the card’s glow */
+.ritual-badge{
+  background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.65));
+  color: #000;
+}
+
+.ritual-card.ritual-pink .ritual-badge{ box-shadow: 0 0 10px rgba(255,154,214,.6); }
+.ritual-card.ritual-violet .ritual-badge{ box-shadow: 0 0 10px rgba(207,169,255,.6); }
+.ritual-card.ritual-sky .ritual-badge{ box-shadow: 0 0 10px rgba(159,223,255,.6); }
+
+.ritual-title{
+  background-image: linear-gradient(90deg,#cfa9ff,#ff8bd3,#89d3ff,#cfa9ff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: sq-shift 14s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(207,169,255,.22)) drop-shadow(0 0 14px rgba(137,211,255,.16));
+}
+@media (prefers-reduced-motion: reduce){ .ritual-title{ animation:none; } }
+
+/* --- SoniQute Ritual Grid (pastel, header-matched) --- */
+
+/* palette pulled from header image */
+:root{
+  --sq-pink:      #ff8bd3;
+  --sq-magenta:   #ff79c6;
+  --sq-lavender:  #cfa9ff;
+  --sq-blue:      #89d3ff;
+  --sq-turq:      #5be7d1;
+  --sq-orange:    #ffb86b;
+  --sq-yellow:    #ffd56a;
+  --sq-deeppurp:  #8a6cff;
+}
+
+/* rotate accents 1..8 to match header vibe */
+.sq-ritual-card:nth-child(8n+1){ --from: var(--sq-pink);    --to: var(--sq-lavender); }
+.sq-ritual-card:nth-child(8n+2){ --from: var(--sq-lavender);--to: var(--sq-blue);     }
+.sq-ritual-card:nth-child(8n+3){ --from: var(--sq-blue);    --to: var(--sq-turq);     }
+.sq-ritual-card:nth-child(8n+4){ --from: var(--sq-pink);    --to: var(--sq-orange);   }
+.sq-ritual-card:nth-child(8n+5){ --from: var(--sq-magenta); --to: var(--sq-lavender); }
+.sq-ritual-card:nth-child(8n+6){ --from: var(--sq-blue);    --to: var(--sq-yellow);   }
+.sq-ritual-card:nth-child(8n+7){ --from: var(--sq-turq);    --to: var(--sq-blue);     }
+.sq-ritual-card:nth-child(8n+8){ --from: var(--sq-orange);  --to: var(--sq-pink);     }
+
+/* card shell */
+.sq-ritual-card{
+  position: relative;
+  padding: 18px 18px 22px;
+  border-radius: 28px;
+  /* subdued pastel gradient (alpha) */
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--from) 28%, transparent) 0%,
+                           color-mix(in oklab, var(--to)   28%, transparent) 55%,
+                           color-mix(in oklab, var(--from) 22%, transparent) 110%);
+  border: 1px solid color-mix(in oklab, var(--to) 38%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 8px 30px rgba(0,0,0,.35),
+    0 0 50px color-mix(in oklab, var(--to) 18%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* subtle glossy bloom */
+.sq-ritual-card::before{
+  content:"";
+  position:absolute; inset:0; border-radius: inherit; pointer-events:none;
+  background:
+    radial-gradient(120% 70% at 30% 0%,
+      color-mix(in oklab, #fff 10%, transparent) 0%,
+      transparent 60%);
+  mix-blend-mode: screen;
+  opacity:.7;
+}
+
+/* hover pop, keep pastel (no neon) */
+.sq-ritual-card:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 14px 36px rgba(0,0,0,.42),
+    0 0 80px color-mix(in oklab, var(--to) 24%, transparent);
+  border-color: color-mix(in oklab, var(--to) 50%, transparent);
+}
+
+/* number badge */
+.sq-ritual-badge{
+  position:absolute; top:10px; left:10px;
+  height:28px; min-width:28px; padding:0 8px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:13px;
+  border-radius:10px;
+  color:#0c060a;
+  background: linear-gradient(135deg, var(--from), var(--to));
+  box-shadow: 0 0 14px color-mix(in oklab, var(--to) 40%, transparent);
+  border:1px solid rgba(255,255,255,.3);
+}
+
+/* image well (glass) */
+.sq-ritual-thumb{
+  width: 100%; aspect-ratio: 1 / 1;
+  border-radius: 22px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(18,10,22,.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  margin: 14px 0 6px;
+  box-shadow: inset 0 0 24px rgba(0,0,0,.25);
+}
+
+/* text */
+.sq-ritual-title{
+  text-align:center; font-weight:800;
+  font-size: clamp(18px, 2.2vw, 22px);
+  margin-top: 2px;
+  color: color-mix(in oklab, var(--to) 85%, #ffffff);
+  text-shadow:
+    0 0 10px color-mix(in oklab, var(--to) 22%, transparent),
+    0 1px 0 rgba(0,0,0,.35);
+}
+.sq-ritual-sub{
+  text-align:center;
+  font-size: 14px;
+  color: rgba(255,255,255,.78);
+  margin-top: 4px;
+}
+/* Smoother GPU transforms */
+.transform-gpu { transform: translateZ(0); }
+.will-change-transform { will-change: transform, opacity; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .sq-ritual-card { transition: none !important; }
+}
+
+/* Circle variant: remove the glass well + frame entirely */
+.sq-ritual-thumb.thumb-circle{
+  border-radius: 9999px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  isolation: isolate;              /* needed so blend works on the image */
+}
+
+/* Optional: image safety */
+.sq-ritual-thumb.thumb-circle img{
+  object-fit: contain;
+}
+
+/* The tint overlay */
+.sq-ritual-thumb.thumb-circle .tint{
+  position: absolute; inset: 0; pointer-events: none;
+  background: var(--tint, transparent);
+  opacity: .22;                    /* tweak .12–.30 */
+  mix-blend-mode: multiply;        /* soft colorization */
+}
+
+/* globals.css */
+.sq-ritual-thumb.thumb-circle{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.sq-ritual-thumb.thumb-circle::before,
+.sq-ritual-thumb.thumb-circle::after{
+  content: none !important;
+  display: none !important;
+}
+
+/* --- Circular SigniFi logo (prevents oval distortion) --- */
+.sig-logo-circle{
+  position: relative;
+  width: 220px;                 /* tweak size */
+  aspect-ratio: 1 / 1;          /* ensures a perfect circle */
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 0 24px rgba(0,0,0,.25);
+}
+
+/* --- SigniFi Intelligence Layer --- */
+/* round logo that never goes oval */
+.sig-circle{
+  position: relative;
+  width: clamp(180px, 28vw, 320px);
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08) inset,
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+/* stacked pastel “bars” (same style/colors you liked) */
+.sig-cards .sig-card, .sig-card{
+  position: relative;
+  padding: 18px 20px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.sig-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.28);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.42),
+    0 0 70px color-mix(in oklab, var(--sig-to, #89d3ff) 22%, transparent);
+}
+
+/* the three gradient themes (unchanged palette) */
+.sig-card.sig-1{ --sig-from:#cfa9ff; --sig-to:#89d3ff; }
+.sig-card.sig-2{ --sig-from:#ffb86b; --sig-to:#ff8bd3; }
+.sig-card.sig-3{ --sig-from:#89d3ff; --sig-to:#5be7d1; }
+
+.sig-card{
+  background:
+    radial-gradient(120% 80% at 30% -20%, rgba(255,255,255,.45) 0%, transparent 60%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--sig-from) 28%, transparent) 0%,
+      color-mix(in oklab, var(--sig-to)   28%, transparent) 55%,
+      color-mix(in oklab, var(--sig-from) 18%, transparent) 120%
+    );
+}
+.sig-card-title{
+  font-weight: 800;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.2;
+  color: color-mix(in oklab, var(--sig-to) 85%, #ffffff);
+  text-shadow:
+    0 0 10px color-mix(in oklab, var(--sig-to) 20%, transparent),
+    0 1px 0 rgba(0,0,0,.35);
+}
+.sig-card-sub{
+  margin-top: 6px;
+  color: rgba(255,255,255,.86);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.sig-circle--xl{
+  /* BIG on desktop, still reasonable on mobile */
+  width: clamp(220px, 38vw, 520px);
+}
+/* Big round logo */
+.sig-circle{ position:relative; aspect-ratio:1/1; border-radius:9999px; overflow:hidden; background:#000;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08) inset, 0 20px 60px rgba(0,0,0,.45);}
+.sig-circle--lg{ width:clamp(240px, 34vw, 520px); }
+
+/* Horizontal “color bar” cards */
+.intel-card{
+  position:relative; padding:18px 20px; border-radius:20px; border:1px solid rgba(255,255,255,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  box-shadow: 0 10px 30px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.04);
+  backdrop-filter: blur(8px);
+}
+.intel-card h3{ font-weight:800; font-size:clamp(18px,2vw,22px); margin-bottom:6px; }
+.intel-card p{ color:rgba(255,255,255,.9); }
+
+/* Accented borders/glow to match your “How It Works” vibe */
+.intel-card--pink{   --c1:#ff8bd3; --c2:#cfa9ff; }
+.intel-card--amber{  --c1:#ffb86b; --c2:#ffd56a; }
+.intel-card--sky{    --c1:#89d3ff; --c2:#5be7d1; }
+.intel-card--pink, .intel-card--amber, .intel-card--sky{
+  border-color: color-mix(in oklab, var(--c2) 40%, transparent);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.25),
+    0 0 48px color-mix(in oklab, var(--c1) 22%, transparent);
+}
+.intel-card--pink h3{ color: color-mix(in oklab, var(--c1) 85%, #fff); }
+.intel-card--amber h3{ color: color-mix(in oklab, var(--c1) 85%, #fff); }
+.intel-card--sky h3{ color: color-mix(in oklab, var(--c1) 85%, #fff); }
+
+/* Perfect vertical centering */
+@media (min-width: 768px) {
+  .sig-circle--lg {
+    align-self: center; /* centers vertically with middle card */
+  }
+}
+
+/* Make motion look buttery smooth */
+.intel-card {
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Optional: subtle hover float */
+.intel-card:hover {
+  transform: translateY(-3px);
+}
+
+/* === Intelligence cards: animation + hover glow (keep your current colors) === */
+.intel-min { transform-origin: center; will-change: transform, opacity; }
+.intel-min:hover {
+  transform: translateY(-3px);
+  /* subtle bloom using the per-card --tint you already have */
+  box-shadow: 0 14px 36px rgba(0,0,0,.42),
+              0 0 70px color-mix(in oklab, var(--tint, #cfa9ff) 22%, transparent);
+}
+
+/* Optional per-card tints (match your three card themes) */
+.intel-tint-pink  { --tint:#cfa9ff; }
+.intel-tint-amber { --tint:#ffb86b; }
+.intel-tint-sky   { --tint:#89d3ff; }
+
+/* === SigniFi logo: exact centering + sparkle (fully isolated) === */
+.sigx-stack { display:grid; place-items:center; align-self:center; }
+.sigx-orb {
+  position: relative;
+  width: clamp(240px, 34vw, 520px);
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  overflow: hidden;
+  background:#000;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 20px 60px rgba(0,0,0,.45);
+}
+.sigx-ring {
+  position:absolute; inset:-14px; border-radius:9999px; z-index:-1;
+  background: conic-gradient(from 0deg,
+    rgba(255,139,211,.18),
+    rgba(207,169,255,.18),
+    rgba(137,211,255,.18),
+    rgba(91,231,209,.14),
+    rgba(255,184,107,.16),
+    rgba(255,139,211,.18));
+  filter: blur(18px);
+  animation: sigx-spin 18s linear infinite;
+}
+.sigx-sheen {
+  position:absolute; inset:0; border-radius:9999px; pointer-events:none;
+  background:
+    radial-gradient(120px 80px at 25% 25%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(160px 110px at 75% 70%, rgba(255,180,255,.12), transparent 65%);
+  mix-blend-mode: screen; opacity:.55; animation: sigx-sheen 6.5s ease-in-out infinite;
+}
+@keyframes sigx-spin { to { transform: rotate(360deg); } }
+@keyframes sigx-sheen {
+  0%,100% { transform: translate(0,0) scale(1);   opacity:.45; }
+  50%     { transform: translate(4px,-3px) scale(1.02); opacity:.7; }
+}
+
+/* === Intelligence cards: animation + hover glow (uses existing per-card tints) === */
+.intel-min { transform-origin: center; will-change: transform, opacity; }
+.intel-min:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0,0,0,.42),
+              0 0 70px color-mix(in oklab, var(--tint, #cfa9ff) 22%, transparent);
+}
+/* Per-card tint tokens that the glow reads */
+.intel-tint-pink  { --tint:#cfa9ff; }
+.intel-tint-amber { --tint:#ffb86b; }
+.intel-tint-sky   { --tint:#89d3ff; }
+
+/* === SigniFi logo: exact centering + sparkle (isolated classes) === */
+.sigx-stack { position: relative; display:grid; place-items:center; }
+.sigx-orb {
+  position: relative;
+  width: clamp(240px, 34vw, 520px);
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  overflow: hidden;
+  background:#000;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    0 20px 60px rgba(0,0,0,.45);
+}
+.sigx-ring {
+  position:absolute; inset:-14px; border-radius:9999px; z-index:-1;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255,139,211,.18),
+    rgba(207,169,255,.18),
+    rgba(137,211,255,.18),
+    rgba(91,231,209,.14),
+    rgba(255,184,107,.16),
+    rgba(255,139,211,.18)
+  );
+  filter: blur(18px);
+  animation: sigx-spin 18s linear infinite;
+}
+.sigx-sheen {
+  position:absolute; inset:0; border-radius:9999px; pointer-events:none;
+  background:
+    radial-gradient(120px 80px at 25% 25%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(160px 110px at 75% 70%, rgba(255,180,255,.12), transparent 65%);
+  mix-blend-mode: screen;
+  opacity:.55;
+  animation: sigx-sheen 6.5s ease-in-out infinite;
+}
+@keyframes sigx-spin { to { transform: rotate(360deg); } }
+@keyframes sigx-sheen {
+  0%,100% { transform: translate(0,0) scale(1);   opacity:.45; }
+  50%     { transform: translate(4px,-3px) scale(1.02); opacity:.7; }
+}
+/* === Soundtrack album cards (accent wrapper + matching title) === */
+.album-card{
+  position: relative;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  background:
+    radial-gradient(120% 80% at 30% -20%, rgba(255,255,255,.45) 0%, transparent 60%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--ac-from) 26%, transparent) 0%,
+      color-mix(in oklab, var(--ac-to)   26%, transparent) 55%,
+      color-mix(in oklab, var(--ac-from) 16%, transparent) 120%);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.album-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.28);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,.42),
+    0 0 70px color-mix(in oklab, var(--ac-to) 22%, transparent);
+}
+.album-title{
+  color: color-mix(in oklab, var(--ac-to) 85%, #fff);
+  text-shadow:
+    0 0 10px color-mix(in oklab, var(--ac-to) 20%, transparent),
+    0 1px 0 rgba(0,0,0,.35);
+}
+
+/* tones (re-using your SoniQute palette vibe) */
+.album-pink  { --ac-from:#cfa9ff; --ac-to:#ff8bd3; }
+.album-amber { --ac-from:#ffb86b; --ac-to:#ffd56a; }
+.album-sky   { --ac-from:#89d3ff; --ac-to:#5be7d1; }
+.album-violet{ --ac-from:#cfa9ff; --ac-to:#9ed6ff; }
+
+/* --- Large circular logo for underwater section --- */
+.qw-logo-circle-large {
+  position: relative;
+  width: clamp(220px, 30vw, 420px);
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: radial-gradient(60% 60% at 50% 50%, #000 0%, #080613 70%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.12),
+    0 0 90px rgba(137,211,255,.45),
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+/* fade blend for city underwater backdrop */
+.bg-layer {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(1.1) brightness(1.05);
+}
+/* ---- HERO text cloud (no hard box, soft blur + sheen) ---- */
+.text-cloud{
+  position: relative;
+  padding: clamp(14px, 2.2vw, 22px) clamp(18px, 3vw, 28px);
+  border-radius: 28px;
+  /* transparent by default – only glow/blur behind */
+}
+.text-cloud::before{
+  content:"";
+  position:absolute; inset:-8px;
+  border-radius: inherit; z-index:-1;
+  background:
+    radial-gradient(60% 70% at 50% 0%, rgba(255,255,255,.35), transparent 60%),
+    radial-gradient(80% 90% at 10% 90%, rgba(137,211,255,.25), transparent 70%),
+    radial-gradient(80% 90% at 90% 90%, rgba(255,139,211,.22), transparent 70%);
+  filter: blur(18px);
+  opacity:.9;
+}
+.hero-lead{
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,.35);
+  font-size: clamp(18px, 2.1vw, 22px);
+  line-height: 1.6;
+}
+
+/* ---- Softer vignette for bright art ---- */
+.vignette--soft{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background: radial-gradient(1200px 800px at 60% 35%,
+     rgba(0,0,0,0) 0%,
+     rgba(0,0,0,.18) 62%,
+     rgba(0,0,0,.28) 100%);
+}
+
+/* ---- Section blends that match artwork hues ---- */
+.section-blend{ --feather: 140px; }
+.section-blend.blend-sea::before{
+  content:""; position:absolute; left:0; right:0; top:-180px; height:200px; z-index:3;
+  /* light aqua fade from hero into sea */
+  background: linear-gradient(to bottom, rgba(120,210,255,.35) 0%, transparent 100%);
+}
+.section-blend.blend-sea::after{
+  content:""; position:absolute; left:0; right:0; bottom:-180px; height:200px; z-index:3;
+  /* soft teal into next section */
+  background: linear-gradient(to top, rgba(80,180,210,.32) 0%, transparent 100%);
+}
+
+/* ---- Animated water rays overlay ---- */
+.water-rays{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255,255,255,.14) 0px,
+      rgba(255,255,255,.10) 6px,
+      rgba(255,255,255,0) 28px,
+      rgba(255,255,255,0) 84px
+    );
+  mix-blend-mode: screen;
+  transform: translate3d(0,0,0);
+  animation: raysDrift 16s linear infinite;
+  opacity:.35;
+  filter: blur(6px);
+}
+@keyframes raysDrift{
+  0%   { transform: translateY(-6%) translateX(0) skewX(-2deg); }
+  50%  { transform: translateY(2%)  translateX(2%) skewX(-1deg); }
+  100% { transform: translateY(-6%) translateX(0) skewX(-2deg); }
+}
+
+/* ---- Circle logo (kept, darker core reduced) ---- */
+.qw-logo-circle-large{
+  position: relative;
+  width: clamp(220px, 30vw, 420px);
+  aspect-ratio: 1 / 1;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: radial-gradient(60% 60% at 50% 50%, #0a0a12 0%, #0a0a12 55%, #0000 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.14),
+    0 0 70px rgba(137,211,255,.45),
+    0 18px 60px rgba(0,0,0,.40);
+}
+
+/* ---- Make default section fades lighter sitewide ---- */
+.section-blend::before,
+.section-blend::after{
+  /* neutralized; specific .blend-* classes provide color-true fades */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100%);
+}
+/* ——— LIGHTER, NATURAL BLENDS ——— */
+
+/* Turn the heavy fades way down for sections that use `blend-soft` */
+.section-blend.blend-soft::before,
+.section-blend.blend-soft::after{
+  content:"";
+  position:absolute; left:0; right:0; pointer-events:none; z-index:3;
+}
+
+/* top fade */
+.section-blend.blend-soft::before{
+  top:-160px; height:160px;
+  /* very light, aqua-tinted; adjust to taste */
+  background: linear-gradient(
+    to bottom,
+    rgba(128, 208, 255, .10),
+    rgba(128, 208, 255, 0)
+  );
+}
+/* bottom fade */
+.section-blend.blend-soft::after{
+  bottom:-160px; height:160px;
+  background: linear-gradient(
+    to top,
+    rgba(90, 190, 240, .08),
+    rgba(90, 190, 240, 0)
+  );
+}
+
+/* The hero’s default dark “footer” tint was causing the burned seam */
+.hero-blend.hero-light::after{
+  background: linear-gradient(
+    to bottom,
+    rgba(12,6,10,0) 0%,
+    rgba(12,6,10,0.06) 55%,
+    rgba(12,6,10,0) 100%
+  ) !important;
+}
+
+/* If any vignette layer is left in, keep it ultra soft */
+.vignette--soft{ opacity:.08; }
+
+/* ——— CITY IMAGE SIZING ——— */
+/* Guarantee a canvas where the 16:9 image can fully fit without cropping */
+.city-wrap{
+  position: relative;
+  width: min(1400px, 96vw);
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(420px, 56vw, 760px);
+}
+
+/* ——— CLOUD BLUR BEHIND TEXT (no boxy edge) ——— */
+.text-cloud{
+  position: relative;
+  padding: 18px 22px;
+  border-radius: 24px;
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,.12), rgba(255,255,255,0) 70%),
+    radial-gradient(80% 80% at 60% 70%, rgba(180,220,255,.10), rgba(180,220,255,0) 75%);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  box-shadow: 0 8px 36px rgba(0,0,0,.22);
+}
+.text-cloud .hero-lead{
+  color: rgba(255,255,255,.95);
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.6;
+}
+/* ——— Disable dark seams on demand ——— */
+.no-blend::before,
+.no-blend::after { content: none !important; }
+
+/* Lighten the hero's built-in bottom fade so it doesn't “burn” the seam */
+.hero-blend.hero-light::after{
+  background: linear-gradient(
+    to bottom,
+    rgba(12,6,10,0) 0%,
+    rgba(12,6,10,0.04) 55%,
+    rgba(12,6,10,0) 100%
+  ) !important;
+}
+
+/* ——— Underwater city full-bleed setup ——— */
+/* Soft aqua background behind/around the image so any extra canvas matches the art */
+.sea-section{
+  position: relative;
+  background: linear-gradient(180deg, #7fd9ff 0%, #46b8ea 40%, #0a1f2d 100%);
+}
+
+/* gentle layer to unify tones at extreme aspect ratios */
+.sea-wash{
+  position:absolute; inset:-2px;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 500px at 50% 0%,
+      rgba(255,255,255,.12), rgba(255,255,255,0) 70%),
+    radial-gradient(1400px 700px at 50% 100%,
+      rgba(14,40,64,.25), rgba(14,40,64,0) 65%);
+  mix-blend-mode: soft-light;
+  opacity: .55;
+}
+
+/* full width, keep entire image (no crop), no black bars */
+.sea-img{
+  display:block;
+  width: 100vw;          /* span the full viewport width */
+  height: auto;          /* keep aspect ratio */
+  margin: 0 auto;        /* center if > viewport on scroll */
+  filter: saturate(1.06) contrast(1.02);
+}
+
+/* On ultra-wide monitors, give the section enough height so the image feels full */
+@media (min-aspect-ratio: 21/9){
+  .sea-section{ padding-top: 2vh; padding-bottom: 4vh; }
+}
+
+/* ——— Cloud blur behind hero text (kept soft, not a box) ——— */
+.text-cloud{
+  position: relative;
+  padding: 18px 22px;
+  border-radius: 28px;
+  background:
+    radial-gradient(60% 60% at 50% 35%, rgba(255,255,255,.12), rgba(255,255,255,0) 70%),
+    radial-gradient(80% 80% at 60% 70%, rgba(180,220,255,.10), rgba(180,220,255,0) 75%);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+}
+.text-cloud .hero-lead{ color: rgba(255,255,255,.96); }
+/* --- Aqua tone we fade through (matches top of city image) --- */
+:root{
+  --aqua1: #9fe8ff;   /* light surface */
+  --aqua2: #66d0f4;   /* mid */
+  --aqua3: #39b7e6;   /* deeper */
+}
+
+/* Feather OUT at the bottom of the HERO into aqua (very soft) */
+.seam-bottom-aqua{
+  position: relative;
+  isolation: isolate;
+}
+.seam-bottom-aqua::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-1px; height:min(18vh,220px);
+  pointer-events:none; z-index:2;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    color-mix(in oklab, var(--aqua1) 75%, transparent) 55%,
+    color-mix(in oklab, var(--aqua2) 85%, transparent) 100%
+  );
+}
+
+/* Feather IN at the top of the CITY section from aqua -> transparent */
+.seam-top-aqua{
+  position: relative;
+  isolation: isolate;
+  margin-top: -6vh;          /* slight overlap to hide any line */
+  padding-top: 6vh;          /* counter the negative margin */
+}
+.seam-top-aqua::before{
+  content:"";
+  position:absolute; left:0; right:0; top:-1px; height:min(20vh,240px);
+  pointer-events:none; z-index:3;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--aqua2) 90%, transparent) 0%,
+    color-mix(in oklab, var(--aqua1) 70%, transparent) 45%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* Mobile: shorten feathers so content doesn’t jump */
+@media (max-width: 768px){
+  .seam-bottom-aqua::after{ height: 120px; }
+  .seam-top-aqua{ margin-top:-40px; padding-top:40px; }
+  .seam-top-aqua::before{ height: 140px; }
+}
+
+/* Give both borders a subtle shimmer */
+div.bg-gradient-to-r.from-sky-400\/60 {
+  animation: aquaGlow 4s ease-in-out infinite;
+}
+
+@keyframes aquaGlow {
+  0%,100% { opacity: 0.8; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.25); }
+}
+
+/* Seamless fuse from the section above into Lore */
+.section-blend::before{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:-32px;              /* extends upward over the previous section */
+  height:64px;
+  pointer-events:none;
+  z-index:5;              /* above Lore bg, below Lore content */
+  background: linear-gradient(
+    to bottom,
+    rgba(10,11,22,0) 0%,
+    #0a0b16 85%,
+    #0a0b16 100%
+  );
+}
+/* === Sheen sweep (same style as Five Cities logo) === */
+@keyframes sheen {
+  0%   { transform: translateX(-120%); opacity: 0; }
+  45%  { opacity: .6; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+.has-sheen { position: relative; overflow: hidden; }
+.has-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -20% -60%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.40), transparent);
+  transform: translateX(-120%);
+  animation: sheen 2.6s ease-out infinite;
+  pointer-events: none;
+  mix-blend-mode: screen; /* soft, like the Five Cities logo */
+}
+
+/* === QUTIE PaMs Lore-style ocean gradient + soft blobs === */
+.ocean-gradient-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, #0a0b16 0%, #032b4b 25%, #037a8d 60%, #5e1b6e 100%);
+}
+.ocean-bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ocean-bubbles > div { position: absolute; border-radius: 9999px; filter: blur(90px); }
+.ocean-bubbles .b1 { top: -6rem; left: 10%;  width: 18rem; height: 18rem; background: rgba(103, 232, 249, .18); }  /* cyan-300/18 */
+.ocean-bubbles .b2 { top: 30%;  right: 15%; width: 16rem; height: 16rem; background: rgba(244, 114, 182, .12); }  /* pink-400/12 */
+.ocean-bubbles .b3 { bottom: 2.5rem; left: 33%; width: 24rem; height: 24rem; background: rgba(96, 165, 250, .12); } /* blue-400/12 */
+
+/* Economy – compact card tweaks (reuses sq-ritual-* styles) */
+.econ-compact {
+  padding: 16px 16px 18px;
+  min-height: auto;           /* keep short */
+}
+.econ-compact .sq-ritual-title {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+.econ-compact .sq-ritual-sub {
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+/* Smaller thumbs to match compact height */
+.econ-thumb {
+  width: 6.5rem;    /* ~104px on md */
+  height: 6.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Shimmer (same vibe as five cities / float-water-shine) */
+.has-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.has-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%);
+  transform: translateX(-120%);
+  animation: econSheen 2.4s ease-in-out infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+@keyframes econSheen {
+  0%   { transform: translateX(-120%) rotate(0.001deg); }
+  100% { transform: translateX(120%)  rotate(0.001deg); }
+}
+
+/* Horizontal arrow connectors between columns (desktop only) */
+.econ-connector {
+  align-self: center;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(125,211,252,.8), rgba(34,211,238,.95), rgba(192,132,252,.8));
+  border-radius: 999px;
+  position: relative;
+}
+.econ-connector::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 10px solid rgba(192,132,252,.9); /* tiny arrow head */
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+@media (max-width: 767.98px) {
+  /* On mobile, stack – hide connectors */
+  .econ-connector { display: none; }
+}
+/* Row: 1 col on mobile, 3 cols on md+ */
+.econ-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem; /* 24px */
+  align-items: stretch;
+}
+@media (min-width: 768px) {
+  .econ-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Compact card tweaks */
+.econ-compact { padding: 16px 16px 18px; min-height: auto; position: relative; }
+.econ-compact .sq-ritual-title { font-size: 1.1rem; margin-top: 10px; }
+.econ-compact .sq-ritual-sub   { font-size: .95rem;  margin-top: 6px;  }
+
+/* Thumb size */
+.econ-thumb {
+  width: 6.5rem;
+  height: 6.5rem;
+  margin-inline: auto;
+}
+
+/* Shimmer on thumbs (matches other sheen) */
+.has-sheen { position: relative; overflow: hidden; }
+.has-sheen::after{
+  content:"";
+  position:absolute; inset:-20%;
+  background: linear-gradient(120deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);
+  transform: translateX(-120%);
+  animation: econSheen 2.4s ease-in-out infinite;
+  mix-blend-mode: screen; pointer-events:none;
+}
+@keyframes econSheen{
+  0%{transform:translateX(-120%) rotate(.001deg)}
+  100%{transform:translateX(120%) rotate(.001deg)}
+}
+
+/* Horizontal connectors drawn from the first two cards */
+@media (min-width: 768px) {
+  .econ-next::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    right:-18px;               /* distance to next card */
+    transform:translateY(-50%);
+    width:50px; height:4px;
+    background: linear-gradient(90deg,
+      rgba(125,211,252,.8),
+      rgba(34,211,238,.95),
+      rgba(192,132,252,.8));
+    border-radius:999px;
+  }
+  .econ-next::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    right:-8px;               /* align with line end */
+    transform:translate(100%,-50%);
+    border-left:10px solid rgba(192,132,252,.9);
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+  }
+}
+
+/* Stack view: hide arrows on mobile */
+@media (max-width: 767.98px){
+  .econ-next::after, .econ-next::before { display:none; }
+}
+
+/* Economy row stays one line on desktop; stacks cleanly on mobile */
+.econ-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .econ-row { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
+}
+
+/* Compact card sizing that visually matches the How It Works thumbnails */
+.econ-compact .sq-ritual-thumb {
+  width: clamp(7rem, 9vw, 8.75rem);
+  height: clamp(7rem, 9vw, 8.75rem);
+  margin-inline: auto;
+}
+
+/* Extra safe-guard: make any econ icon perfectly round with a white border */
+.econ-thumb {
+  border-radius: 9999px;
+  overflow: hidden;
+  /* the white ring is applied in JSX via Tailwind ring classes;
+     this keeps it consistent if Tailwind utilities change */
+  box-shadow: 0 0 0 0px rgba(255,255,255,1);
+}
+
+/* --- Force all economy icons to show consistent white borders --- */
+.econ-thumb img {
+  border-radius: 9999px;             /* true circle */
+  border: 4px solid #fff;            /* visible white edge */
+  box-sizing: border-box;
+  background: #0000;                 /* transparent so glow shows cleanly */
+  object-fit: cover;
+}
+
+/* Optional: subtle white glow to make the border pop on bright backgrounds */
+.econ-thumb {
+  position: relative;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.econ-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 12px rgba(255,255,255,0.35);
+  pointer-events: none;
+}
+/* ...except this one, which already has a native white outline */
+.econ-thumb img[src*="factions.png"] {
+  border: none;
+}
+
+/* Sparkly animated headline */
+.sparkle-text {
+  color: transparent;
+  background-image:
+    radial-gradient(1200px 600px at 0% 0%, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(90deg, #c8f6ff, #f7baff, #b0e9ff, #c8f6ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, .45));
+  background-size: 200% 100%;
+  animation: sparkleShift 4.5s ease-in-out infinite;
+}
+
+@keyframes sparkleShift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+/* CTA glossy sheen */
+.btn-sheen {
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.35) 50%, transparent 100%);
+  animation: sheenPass 2.6s ease-in-out infinite;
+  opacity: .0;
+}
+.group:hover .btn-sheen { opacity: .8; }
+
+@keyframes sheenPass {
+  0%   { transform: translateX(0)   skewX(-18deg); }
+  60%  { transform: translateX(280%) skewX(-18deg); }
+  100% { transform: translateX(280%) skewX(-18deg); }
+}
+
+/* Shard System Animations */
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2); 
+  }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes wave {
+  0%, 100% { 
+    transform: scaleY(1); 
+  }
+  50% { 
+    transform: scaleY(0.5); 
+  }
+}
+
+/* Section blending */
+.section-blend {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-blend::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-blend {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-blend::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Shard System Animations */
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2); 
+  }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes wave {
+  0%, 100% { 
+    transform: scaleY(1); 
+  }
+  50% { 
+    transform: scaleY(0.5); 
+  }
+}
