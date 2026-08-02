@@ -1,134 +1,155 @@
-<svg viewBox="0 0 780 620" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, -apple-system, sans-serif">
-  <title>PaMs Dance Studio — AI Video Generation Workflow</title>
-  <desc>Flowchart showing the end-to-end pipeline: wallet connect, NFT gate, vibe selection, WaveSpeed generation, FFmpeg stitching, lyric compositing, and final GCS upload.</desc>
+<svg viewBox="0 0 900 660" xmlns="http://www.w3.org/2000/svg" role="img" font-family="system-ui, -apple-system, sans-serif">
+  <title>SoniQute — Full Creative Pipeline</title>
+  <desc>End-to-end pipeline from trait design through generative art studio, FLUX LoRA training, NFT minting, and PaMs Dance Studio delivery.</desc>
 
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
-    </marker>
-    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#f87171"/>
-    </marker>
-    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#4ade80"/>
-    </marker>
-    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/>
-    </marker>
-    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#fb923c"/>
-    </marker>
+    <marker id="arr"   markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/></marker>
+    <marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#4ade80"/></marker>
+    <marker id="arr-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f87171"/></marker>
+    <marker id="arr-o" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#fb923c"/></marker>
+    <marker id="arr-p" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#a78bfa"/></marker>
+    <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#38bdf8"/></marker>
+    <marker id="arr-y" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#fbbf24"/></marker>
   </defs>
 
-  <!-- ── LANE BACKGROUNDS ── -->
-  <rect x="10" y="10" width="760" height="90" rx="10" fill="#1e1b4b" opacity="0.18"/>
-  <text x="24" y="30" font-size="10" fill="#818cf8" font-weight="600" letter-spacing="1">WALLET &amp; NFT AUTH</text>
+  <!-- ══ LANE 1: CREATIVE FOUNDATION ══ -->
+  <rect x="10" y="10" width="880" height="90" rx="10" fill="#78350f" opacity="0.18"/>
+  <text x="24" y="28" font-size="10" fill="#fbbf24" font-weight="600" letter-spacing="1.5">CREATIVE FOUNDATION</text>
 
-  <rect x="10" y="112" width="760" height="90" rx="10" fill="#064e3b" opacity="0.18"/>
-  <text x="24" y="132" font-size="10" fill="#34d399" font-weight="600" letter-spacing="1">USER SELECTION</text>
+  <rect x="30" y="34" width="170" height="56" rx="8" fill="#92400e"/>
+  <text x="115" y="54" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🎨 Trait Design</text>
+  <text x="115" y="70" text-anchor="middle" font-size="10" fill="#fcd34d">13 layer categories</text>
+  <text x="115" y="84" text-anchor="middle" font-size="10" fill="#fcd34d">8 skin types · rarity rules</text>
 
-  <rect x="10" y="214" width="760" height="140" rx="10" fill="#431407" opacity="0.20"/>
-  <text x="24" y="234" font-size="10" fill="#fb923c" font-weight="600" letter-spacing="1">AI VIDEO GENERATION  —  WaveSpeed Seedance 2.0</text>
+  <line x1="200" y1="62" x2="248" y2="62" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arr-y)"/>
+  <text x="224" y="56" text-anchor="middle" font-size="9" fill="#fbbf24">commission</text>
 
-  <rect x="10" y="366" width="760" height="140" rx="10" fill="#1a1244" opacity="0.18"/>
-  <text x="24" y="386" font-size="10" fill="#a78bfa" font-weight="600" letter-spacing="1">VIDEO PIPELINE  —  FFmpeg + Shotstack</text>
+  <rect x="250" y="34" width="195" height="56" rx="8" fill="#92400e"/>
+  <text x="347" y="54" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">✏️ Forja Studios</text>
+  <text x="347" y="70" text-anchor="middle" font-size="10" fill="#fcd34d">hand-illustrated PNG layers</text>
+  <text x="347" y="84" text-anchor="middle" font-size="10" fill="#fcd34d">layered PSD → transparent PNGs</text>
 
-  <rect x="10" y="518" width="760" height="90" rx="10" fill="#0c2340" opacity="0.22"/>
-  <text x="24" y="538" font-size="10" fill="#38bdf8" font-weight="600" letter-spacing="1">DELIVERY</text>
+  <line x1="445" y1="62" x2="493" y2="62" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#arr-y)"/>
 
-  <!-- ══ ROW 1 — AUTH ══ -->
+  <rect x="495" y="34" width="375" height="56" rx="8" fill="#92400e"/>
+  <text x="682" y="54" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🗂️ Layer Artwork</text>
+  <text x="682" y="70" text-anchor="middle" font-size="10" fill="#fcd34d">13 categories · 379 transparent PNGs</text>
+  <text x="682" y="84" text-anchor="middle" font-size="10" fill="#fcd34d">BACKGROUND · HEAD · HAIR · BODY · FACE · EYES · ENSEMBLE · ...</text>
 
-  <rect x="40" y="40" width="140" height="48" rx="8" fill="#4f46e5"/>
-  <text x="110" y="61" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🦊 Connect Wallet</text>
-  <text x="110" y="77" text-anchor="middle" font-size="10" fill="#c7d2fe">MetaMask / WalletConnect</text>
+  <!-- ══ LANE 2: GENERATIVE ART STUDIO ══ -->
+  <rect x="10" y="110" width="880" height="100" rx="10" fill="#064e3b" opacity="0.18"/>
+  <text x="24" y="128" font-size="10" fill="#34d399" font-weight="600" letter-spacing="1.5">GENERATIVE ART STUDIO</text>
 
-  <line x1="180" y1="64" x2="224" y2="64" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- Connector: Layer Artwork bottom → Generator Studio top-left -->
+  <path d="M 682 90 Q 682 112 200 112 L 200 134" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-y)"/>
 
-  <polygon points="250,40 310,64 250,88 190,64" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" transform="translate(15,0)"/>
-  <text x="265" y="61" text-anchor="middle" font-size="10" font-weight="700" fill="#e0e7ff">PaMs NFT</text>
-  <text x="265" y="75" text-anchor="middle" font-size="10" font-weight="700" fill="#e0e7ff">holder?</text>
+  <rect x="30" y="134" width="340" height="60" rx="8" fill="#065f46"/>
+  <text x="200" y="157" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">⚙️ Generator Studio</text>
+  <text x="200" y="173" text-anchor="middle" font-size="10" fill="#6ee7b7">Canvas compositing · skin type matching</text>
+  <text x="200" y="186" text-anchor="middle" font-size="10" fill="#6ee7b7">DNA uniqueness · rarity scoring · lore stats</text>
 
-  <line x1="325" y1="50" x2="378" y2="50" stroke="#f87171" stroke-width="1.5" marker-end="url(#arrow-red)"/>
-  <text x="350" y="44" text-anchor="middle" font-size="9" fill="#f87171">No</text>
-  <rect x="380" y="32" width="110" height="36" rx="8" fill="#7f1d1d"/>
-  <text x="435" y="55" text-anchor="middle" font-size="11" fill="#fca5a5">🔒 Access Denied</text>
+  <line x1="370" y1="164" x2="428" y2="164" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-g)"/>
 
-  <line x1="325" y1="64" x2="526" y2="64" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arrow-green)"/>
-  <text x="430" y="58" text-anchor="middle" font-size="9" fill="#4ade80">Yes</text>
-  <rect x="528" y="40" width="200" height="48" rx="8" fill="#14532d"/>
-  <text x="628" y="61" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🖼️ Fetch NFT Gallery</text>
-  <text x="628" y="77" text-anchor="middle" font-size="10" fill="#86efac">IPFS metadata + on-chain balanceOf</text>
+  <rect x="430" y="134" width="440" height="60" rx="8" fill="#065f46"/>
+  <text x="650" y="157" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🃏 1,000 Collectible Cards</text>
+  <text x="650" y="173" text-anchor="middle" font-size="10" fill="#6ee7b7">character layers composited onto card template</text>
+  <text x="650" y="186" text-anchor="middle" font-size="10" fill="#6ee7b7">Shoreline → Reef → Deep Water → Abyss → Pamlovia</text>
 
-  <!-- ══ ROW 2 — SELECTION ══ -->
+  <!-- ══ LANE 3: LORA TRAINING ══ -->
+  <rect x="10" y="220" width="880" height="100" rx="10" fill="#2e1065" opacity="0.18"/>
+  <text x="24" y="238" font-size="10" fill="#c084fc" font-weight="600" letter-spacing="1.5">LORA TRAINING — Replicate</text>
 
-  <line x1="628" y1="88" x2="628" y2="134" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <line x1="628" y1="156" x2="460" y2="156" stroke="#94a3b8" stroke-width="1.5"/>
-  <rect x="290" y="134" width="170" height="48" rx="8" fill="#065f46"/>
-  <text x="375" y="155" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🎵 Pick Vibe + Track</text>
-  <text x="375" y="171" text-anchor="middle" font-size="10" fill="#6ee7b7">12 vibes · curated library</text>
-  <line x1="460" y1="156" x2="462" y2="156" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- Connector: 1,000 Cards → Generate Dataset (straight down, right side) -->
+  <line x1="735" y1="194" x2="735" y2="244" stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-g)"/>
 
-  <!-- ══ ROW 3 — GENERATION ══ -->
+  <rect x="600" y="244" width="270" height="60" rx="8" fill="#4a1d96"/>
+  <text x="735" y="267" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">📦 Generate Dataset</text>
+  <text x="735" y="283" text-anchor="middle" font-size="10" fill="#d8b4fe">1,000 PNG + caption JSON pairs</text>
+  <text x="735" y="296" text-anchor="middle" font-size="10" fill="#d8b4fe">→ lora-dataset.zip</text>
 
-  <line x1="375" y1="182" x2="375" y2="248" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="600" y1="274" x2="548" y2="274" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr-p)"/>
 
-  <rect x="260" y="250" width="230" height="48" rx="8" fill="#7c2d12"/>
-  <text x="375" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">📤 POST /pams-studio/generate</text>
-  <text x="375" y="286" text-anchor="middle" font-size="10" fill="#fdba74">JWT auth · rate-limited</text>
+  <rect x="300" y="244" width="246" height="60" rx="8" fill="#4a1d96"/>
+  <text x="423" y="267" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🤖 FLUX LoRA Training</text>
+  <text x="423" y="283" text-anchor="middle" font-size="10" fill="#d8b4fe">ostris/flux-dev-lora-trainer · 2,000 steps</text>
+  <text x="423" y="296" text-anchor="middle" font-size="10" fill="#d8b4fe">lora_rank 16 · trigger word: PAMSCHAR</text>
 
-  <line x1="490" y1="274" x2="544" y2="274" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+  <line x1="300" y1="274" x2="248" y2="274" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arr-p)"/>
 
-  <rect x="546" y="250" width="200" height="48" rx="8" fill="#9a3412"/>
-  <text x="646" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🤖 WaveSpeed API</text>
-  <text x="646" y="286" text-anchor="middle" font-size="10" fill="#fdba74">image-to-video · async submit</text>
+  <rect x="30" y="244" width="216" height="60" rx="8" fill="#4a1d96"/>
+  <text x="138" y="267" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">✨ 25 Limited Edition</text>
+  <text x="138" y="283" text-anchor="middle" font-size="10" fill="#d8b4fe">FLUX-generated characters</text>
+  <text x="138" y="296" text-anchor="middle" font-size="10" fill="#d8b4fe">new environments · cinematic lighting</text>
 
-  <path d="M 646 298 Q 646 338 600 338 Q 554 338 554 298" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow-orange)"/>
-  <text x="600" y="332" text-anchor="middle" font-size="9" fill="#fb923c">polling every 5s (10 min timeout)</text>
+  <!-- Divider: creation pipeline ↔ holder experience -->
+  <line x1="10" y1="334" x2="890" y2="334" stroke="#475569" stroke-width="1" stroke-dasharray="6 4"/>
+  <text x="450" y="348" text-anchor="middle" font-size="10" fill="#64748b" letter-spacing="2">NFT HOLDER EXPERIENCE</text>
 
-  <line x1="546" y1="274" x2="330" y2="274" stroke="#94a3b8" stroke-width="1.5"/>
-  <line x1="260" y1="274" x2="162" y2="274" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Connector: 25 LE → NFT Gallery (dashed arc along divider) -->
+  <path d="M 138 304 Q 138 334 715 334 L 715 376" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-p)"/>
+  <text x="430" y="330" text-anchor="middle" font-size="9" fill="#c084fc">minted as NFTs</text>
 
-  <rect x="40" y="250" width="120" height="48" rx="8" fill="#7c2d12"/>
-  <text x="100" y="270" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">💾 Save Scene</text>
-  <text x="100" y="285" text-anchor="middle" font-size="10" fill="#fdba74">PamsScene → GCS</text>
-  <text x="200" y="269" text-anchor="middle" font-size="9" fill="#4ade80">✓ done</text>
+  <!-- ══ LANE 4: WALLET & NFT AUTH ══ -->
+  <rect x="10" y="354" width="880" height="86" rx="10" fill="#1e1b4b" opacity="0.18"/>
+  <text x="24" y="372" font-size="10" fill="#818cf8" font-weight="600" letter-spacing="1.5">WALLET &amp; NFT AUTH</text>
 
-  <!-- ══ ROW 4 — STITCH ══ -->
+  <rect x="30" y="376" width="160" height="46" rx="8" fill="#4f46e5"/>
+  <text x="110" y="395" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🦊 Connect Wallet</text>
+  <text x="110" y="411" text-anchor="middle" font-size="10" fill="#c7d2fe">MetaMask / WalletConnect</text>
 
-  <line x1="100" y1="298" x2="100" y2="402" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="190" y1="399" x2="223" y2="399" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <rect x="40" y="404" width="165" height="48" rx="8" fill="#1e1244"/>
-  <text x="122" y="423" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">✂️ POST /pams-studio/stitch</text>
-  <text x="122" y="440" text-anchor="middle" font-size="10" fill="#c4b5fd">FFmpeg: intro + scene + outro</text>
+  <polygon points="280,375 335,399 280,423 225,399" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+  <text x="280" y="397" text-anchor="middle" font-size="10" font-weight="700" fill="#e0e7ff">PaMs</text>
+  <text x="280" y="411" text-anchor="middle" font-size="10" font-weight="700" fill="#e0e7ff">holder?</text>
 
-  <line x1="205" y1="428" x2="264" y2="428" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+  <line x1="335" y1="388" x2="393" y2="388" stroke="#f87171" stroke-width="1.5" marker-end="url(#arr-r)"/>
+  <text x="362" y="382" text-anchor="middle" font-size="9" fill="#f87171">No</text>
+  <rect x="395" y="375" width="108" height="30" rx="6" fill="#7f1d1d"/>
+  <text x="449" y="395" text-anchor="middle" font-size="11" fill="#fca5a5">🔒 Denied</text>
 
-  <polygon points="290,404 350,428 290,452 230,428" fill="#1e1b4b" stroke="#a78bfa" stroke-width="2" transform="translate(10,0)"/>
-  <text x="300" y="425" text-anchor="middle" font-size="10" font-weight="700" fill="#e0e7ff">Lyrics</text>
-  <text x="300" y="439" text-anchor="middle" font-size="10" font-weight="700" fill="#e0e7ff">enabled?</text>
+  <line x1="335" y1="399" x2="558" y2="399" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arr-g)"/>
+  <text x="444" y="393" text-anchor="middle" font-size="9" fill="#4ade80">Yes</text>
 
-  <line x1="360" y1="428" x2="420" y2="428" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
-  <text x="390" y="422" text-anchor="middle" font-size="9" fill="#a78bfa">Yes</text>
-  <rect x="422" y="404" width="180" height="48" rx="8" fill="#312e81"/>
-  <text x="512" y="423" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">📝 Lyric Overlays</text>
-  <text x="512" y="440" text-anchor="middle" font-size="10" fill="#c4b5fd">Shotstack compositing · GCS</text>
+  <rect x="560" y="376" width="310" height="46" rx="8" fill="#14532d"/>
+  <text x="715" y="395" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🖼️ NFT Gallery Loaded</text>
+  <text x="715" y="411" text-anchor="middle" font-size="10" fill="#86efac">IPFS metadata · on-chain balanceOf · character image</text>
 
-  <line x1="300" y1="452" x2="300" y2="490" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="310" y="476" font-size="9" fill="#a78bfa">No</text>
+  <!-- ══ LANE 5: STUDIO — AI VIDEO GENERATION ══ -->
+  <rect x="10" y="450" width="880" height="100" rx="10" fill="#431407" opacity="0.20"/>
+  <text x="24" y="468" font-size="10" fill="#fb923c" font-weight="600" letter-spacing="1.5">STUDIO — AI VIDEO GENERATION</text>
 
-  <line x1="512" y1="452" x2="512" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
-  <line x1="300" y1="490" x2="512" y2="490" stroke="#94a3b8" stroke-width="1.5"/>
-  <line x1="406" y1="490" x2="406" y2="508" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <!-- Connector: NFT Gallery → Pick Vibe (curves down-left) -->
+  <path d="M 715 422 Q 715 445 357 445 L 357 474" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
 
-  <!-- ══ ROW 5 — DELIVERY ══ -->
+  <rect x="260" y="474" width="195" height="58" rx="8" fill="#7c2d12"/>
+  <text x="357" y="496" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🎵 Pick Vibe + Track</text>
+  <text x="357" y="512" text-anchor="middle" font-size="10" fill="#fdba74">12 dance vibes · curated library</text>
+  <text x="357" y="524" text-anchor="middle" font-size="10" fill="#fdba74">POST /pams-studio/generate</text>
 
-  <rect x="280" y="540" width="165" height="48" rx="8" fill="#0c3a6e"/>
-  <text x="362" y="560" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">☁️ Upload to GCS</text>
-  <text x="362" y="576" text-anchor="middle" font-size="10" fill="#7dd3fc">PamsFinalVideo record created</text>
+  <line x1="455" y1="503" x2="508" y2="503" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arr-o)"/>
 
-  <line x1="445" y1="564" x2="504" y2="564" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="510" y="474" width="360" height="58" rx="8" fill="#9a3412"/>
+  <text x="690" y="496" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🤖 WaveSpeed Seedance 2.0</text>
+  <text x="690" y="512" text-anchor="middle" font-size="10" fill="#fdba74">image-to-video · async polling</text>
+  <text x="690" y="524" text-anchor="middle" font-size="10" fill="#fdba74">dance scene saved to GCS</text>
 
-  <rect x="506" y="540" width="155" height="48" rx="8" fill="#155e75"/>
-  <text x="583" y="560" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🎉 Share &amp; Download</text>
-  <text x="583" y="576" text-anchor="middle" font-size="10" fill="#7dd3fc">MP4 · presigned URL</text>
+  <!-- ══ LANE 6: VIDEO PIPELINE & DELIVERY ══ -->
+  <rect x="10" y="560" width="880" height="90" rx="10" fill="#0c2340" opacity="0.22"/>
+  <text x="24" y="578" font-size="10" fill="#38bdf8" font-weight="600" letter-spacing="1.5">VIDEO PIPELINE &amp; DELIVERY</text>
+
+  <!-- Connector: WaveSpeed → FFmpeg Stitch (curves down-left) -->
+  <path d="M 690 532 Q 690 557 220 557 L 220 584" fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="30" y="584" width="380" height="52" rx="8" fill="#1e1244"/>
+  <text x="220" y="604" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">✂️ FFmpeg + Shotstack</text>
+  <text x="220" y="620" text-anchor="middle" font-size="10" fill="#c4b5fd">intro + dance scene + outro stitch</text>
+  <text x="220" y="632" text-anchor="middle" font-size="10" fill="#c4b5fd">lyric overlays composited</text>
+
+  <line x1="410" y1="610" x2="468" y2="610" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arr-b)"/>
+
+  <rect x="470" y="584" width="400" height="52" rx="8" fill="#0c3a6e"/>
+  <text x="670" y="604" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">🎉 Share &amp; Download</text>
+  <text x="670" y="620" text-anchor="middle" font-size="10" fill="#7dd3fc">PamsFinalVideo → GCS · presigned URL</text>
+  <text x="670" y="632" text-anchor="middle" font-size="10" fill="#7dd3fc">MP4 ready for social media</text>
 </svg>

@@ -10,7 +10,7 @@ Trait design → Layer artwork (Forja Studios) → Generative Art Studio → 1,0
 
 ---
 
-## PaMs Dance Studio
+## SoniQute Generative Studio
 
 ![Workflow diagram](docs/workflow.svg)
 
