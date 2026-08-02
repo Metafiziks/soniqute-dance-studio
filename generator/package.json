@@ -1,0 +1,30 @@
+{
+  "name": "pams-generative-art-studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check",
+    "generate:demo-layers": "node scripts/generate-demo-layers.js",
+    "generate:dataset": "node scripts/generate-dataset.js",
+    "train:lora": "npx ts-node scripts/train-lora.ts"
+  },
+  "dependencies": {
+    "canvas": "^3.2.3",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "ts-node": "^10",
+    "typescript": "^5"
+  }
+}

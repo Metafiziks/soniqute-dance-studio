@@ -1,0 +1,32 @@
+{
+  "id": "pams",
+  "name": "PaMs Eternity Genesis",
+  "cardTemplate": "card_template.png",
+  "rulesEngine": "pams",
+  "pixelArt": false,
+  "supply": 1000,
+  "defaultLayerOrder": [
+    "BACKGROUND",
+    "HEAD",
+    "HAIR",
+    "EARRINGS",
+    "BODY",
+    "FACE",
+    "EYES",
+    "SHOES",
+    "LOWER BODY",
+    "ACCESSORY",
+    "ENSEMBLE",
+    "NECKLACE",
+    "NAILS"
+  ],
+  "layersWithNone": [
+    "EARRINGS",
+    "ACCESSORY",
+    "ENSEMBLE",
+    "NECKLACE",
+    "NAILS",
+    "SHOES"
+  ],
+  "defaultFrequencies": {}
+}

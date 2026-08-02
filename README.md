@@ -1,4 +1,16 @@
-# PaMs Dance Studio
+# SoniQute — PaMs Collection
+
+The full AI pipeline for the SoniQute PaMs collection: from generative character art through LoRA model training to an NFT-gated dance video studio for social media content generation.
+
+**Pipeline overview:**
+```
+Trait design → Layer artwork (Forja Studios) → Generative Art Studio → 1,000 card images
+  → FLUX LoRA training (Replicate) → 25 Limited Edition characters → PaMs Dance Studio
+```
+
+---
+
+## PaMs Dance Studio
 
 ![Workflow diagram](docs/workflow.svg)
 
@@ -134,3 +146,18 @@ The most critical ones to get started:
 - `WAVESPEED_API_KEY` — AI video generation
 - `NEXT_PUBLIC_PAMS_CONTRACT_ADDRESS` — the deployed NFT contract on Ethereum
 - `NEXT_PUBLIC_API_URL` — points frontend at the backend
+
+---
+
+## PaMs Generative Art Studio
+
+The [`generator/`](generator/) subdirectory contains the custom Next.js generative art studio used to produce the original 1,000 PaMs characters, plus the scripts for generating a LoRA training dataset and submitting the training job to Replicate.
+
+```bash
+cd generator
+npm install
+cp -r demo-layers/* collections/pams/layers/   # use placeholder layers for demo
+npm run dev                                      # studio at http://localhost:3000
+```
+
+See [`generator/README.md`](generator/README.md) for the full pipeline documentation.

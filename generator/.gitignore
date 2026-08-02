@@ -1,0 +1,11 @@
+node_modules/
+.next/
+lora-dataset/
+lora-dataset.zip
+
+# Actual PaMs artwork layers are not included in this repo.
+# Add your own commissioned artwork under collections/pams/layers/
+# following the layer naming conventions described in the README.
+# Demo placeholder layers (demo-layers/) ARE committed and usable for testing.
+collections/pams/layers/*.png
+collections/pams/layers/**/*.png
