@@ -1,0 +1,60 @@
+{
+  "intro_scenes": [
+    {
+      "title": "Intro Scene 1",
+      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/intros/intro-1.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    }
+  ],
+  "outro_scenes": [
+    {
+      "title": "Outro Scene 1",
+      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/outros/outro-1.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    }
+  ],
+  "scene_library": [
+    {
+      "tokenId": 1,
+      "characterName": "PaMs #1",
+      "nftImageUrl": "https://storage.googleapis.com/YOUR_BUCKET/characters/1.png",
+      "vibeId": "hype",
+      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/scenes/scene-1.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": 2,
+      "characterName": "PaMs #2",
+      "nftImageUrl": "https://storage.googleapis.com/YOUR_BUCKET/characters/2.png",
+      "vibeId": "chill",
+      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/scenes/scene-2.mp4",
+      "duration": "5s"
+    }
+  ],
+  "render_library": [
+    {
+      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/renders/render-1.mp4",
+      "trackTitle": "Track Title",
+      "trackArtist": "Artist Name",
+      "lyricStyle": "neon",
+      "createdAt": "2025-01-01T00:00:00Z"
+    }
+  ],
+  "tracks": [
+    {
+      "title": "Track Title",
+      "artist": "Artist Name",
+      "albumArtUrl": "https://storage.googleapis.com/YOUR_BUCKET/album-art/track-1.jpg",
+      "bpm": 128,
+      "clips": [
+        {
+          "label": "Main Mix",
+          "audioUrl": "https://storage.googleapis.com/YOUR_BUCKET/audio/track-1-main.mp3",
+          "duration": "3:30"
+        }
+      ]
+    }
+  ]
+}
