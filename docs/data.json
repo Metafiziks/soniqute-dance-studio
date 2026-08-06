@@ -2,7 +2,31 @@
   "intro_scenes": [
     {
       "title": "Intro Scene 1",
-      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/intros/intro-1.mp4",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/bwp2segvcqezpzakf7w8.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Intro Scene 2",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/fpbfbyzawm7wsqu6ztl4.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Intro Scene 3",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/lvepggjpfi4pxv93nuzp.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Intro Scene 4",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/v7mttr7yfonxxtq4hele.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Intro Scene 5",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/w2helckjbzrtdcxcnqob.mp4",
       "thumbnailUrl": null,
       "duration": 5
     }
@@ -10,48 +34,293 @@
   "outro_scenes": [
     {
       "title": "Outro Scene 1",
-      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/outros/outro-1.mp4",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/fhvirjkzr0a6lictbdnp.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Outro Scene 2",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/gzrwimwhfeoygjagvy2c.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Outro Scene 3",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/i80yyarp8f8aqlkotf0h.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Outro Scene 4",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/uqkjbnesjckujgx3xfms.mp4",
+      "thumbnailUrl": null,
+      "duration": 5
+    },
+    {
+      "title": "Outro Scene 5",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/zzpokfzvxcsagcakffe8.mp4",
       "thumbnailUrl": null,
       "duration": 5
     }
   ],
   "scene_library": [
     {
-      "tokenId": 1,
-      "characterName": "PaMs #1",
-      "nftImageUrl": "https://storage.googleapis.com/YOUR_BUCKET/characters/1.png",
-      "vibeId": "hype",
-      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/scenes/scene-1.mp4",
+      "tokenId": 1502,
+      "characterName": "PaMs #1502",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/ahrtdftcply4ewbjxdsl.png",
+      "vibeId": "bounce",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/1502-bounce-1777507249330.mp4",
       "duration": "5s"
     },
     {
-      "tokenId": 2,
-      "characterName": "PaMs #2",
-      "nftImageUrl": "https://storage.googleapis.com/YOUR_BUCKET/characters/2.png",
-      "vibeId": "chill",
-      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/scenes/scene-2.mp4",
+      "tokenId": 1502,
+      "characterName": "PaMs #1502",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/ahrtdftcply4ewbjxdsl.png",
+      "vibeId": "fierce",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/1502-fierce-1780156916065.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": 1502,
+      "characterName": "PaMs #1502",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/ahrtdftcply4ewbjxdsl.png",
+      "vibeId": "groovy",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/1502-groovy-1777508050721.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": 624,
+      "characterName": "PaMs #624",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/b56nw80vatwdakqoqef8.png",
+      "vibeId": "amapiano",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/624-amapiano-1780879061988.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": 624,
+      "characterName": "PaMs #624",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/b56nw80vatwdakqoqef8.png",
+      "vibeId": "house",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/624-house-1781536749909.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": 624,
+      "characterName": "PaMs #624",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/b56nw80vatwdakqoqef8.png",
+      "vibeId": "kpop",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/624-kpop-1780795881112.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/c25j2pfpb0bd7ttglmcv.png",
+      "vibeId": "electricslide",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6a485501b1df87a47af3fb37-electricslide-1784158751567.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/c25j2pfpb0bd7ttglmcv.png",
+      "vibeId": "fierce",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6a485501b1df87a47af3fb37-fierce-1784158481042.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/c25j2pfpb0bd7ttglmcv.png",
+      "vibeId": "groovy",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6a485501b1df87a47af3fb37-groovy-1784158060645.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 2",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/d4lu0cdftofq5fu8dyqv.png",
+      "vibeId": "fierce",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6a485502b1df87a47af3fb49-fierce-1784151117604.mp4",
+      "duration": "5s"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 2",
+      "nftImageUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/d4lu0cdftofq5fu8dyqv.png",
+      "vibeId": "groovy",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6a485502b1df87a47af3fb49-groovy-1784150076602.mp4",
       "duration": "5s"
     }
   ],
   "render_library": [
     {
-      "videoUrl": "https://storage.googleapis.com/YOUR_BUCKET/renders/render-1.mp4",
-      "trackTitle": "Track Title",
-      "trackArtist": "Artist Name",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1780712990893.mp4",
+      "trackTitle": "Track 1",
+      "trackArtist": "SoniQute",
       "lyricStyle": "neon",
-      "createdAt": "2025-01-01T00:00:00Z"
+      "createdAt": "2026-03-05T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1780713177493.mp4",
+      "trackTitle": "Track 1",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "bold",
+      "createdAt": "2026-03-05T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1780879137695.mp4",
+      "trackTitle": "Track 2",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-03-07T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781199196678.mp4",
+      "trackTitle": "Track 3",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "minimal",
+      "createdAt": "2026-03-10T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781536457008.mp4",
+      "trackTitle": "Track 4",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-03-14T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781537028505.mp4",
+      "trackTitle": "Track 4",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "bold",
+      "createdAt": "2026-03-14T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781544172597.mp4",
+      "trackTitle": "Track 4",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "minimal",
+      "createdAt": "2026-03-14T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781549695295.mp4",
+      "trackTitle": "Track 5",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-03-14T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781888588564.mp4",
+      "trackTitle": "Track 5",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "bold",
+      "createdAt": "2026-03-18T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1781889745450.mp4",
+      "trackTitle": "Track 6",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-03-18T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1784155864153.mp4",
+      "trackTitle": "Track 1",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-04-05T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1784159005354.mp4",
+      "trackTitle": "Track 2",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "minimal",
+      "createdAt": "2026-04-05T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1784165801132.mp4",
+      "trackTitle": "Track 3",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "bold",
+      "createdAt": "2026-04-05T00:00:00Z"
     }
   ],
   "tracks": [
     {
-      "title": "Track Title",
-      "artist": "Artist Name",
-      "albumArtUrl": "https://storage.googleapis.com/YOUR_BUCKET/album-art/track-1.jpg",
+      "title": "Track 1",
+      "artist": "SoniQute",
+      "albumArtUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/art/ypd5x70vpc5y0hj98x3a.png",
+      "bpm": 120,
+      "clips": [
+        {
+          "label": "Main Mix",
+          "audioUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/audio/drl9869juhnotfp96car.mp3",
+          "duration": "3:30"
+        }
+      ]
+    },
+    {
+      "title": "Track 2",
+      "artist": "SoniQute",
+      "albumArtUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/art/gdkpn04k685cz95v7zko.png",
       "bpm": 128,
       "clips": [
         {
           "label": "Main Mix",
-          "audioUrl": "https://storage.googleapis.com/YOUR_BUCKET/audio/track-1-main.mp3",
+          "audioUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/audio/eegzwghskuegipdr37gl.mp3",
+          "duration": "3:30"
+        }
+      ]
+    },
+    {
+      "title": "Track 3",
+      "artist": "SoniQute",
+      "albumArtUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/art/ttkhuaipqfmgc6m2fr8q.jpg",
+      "bpm": 95,
+      "clips": [
+        {
+          "label": "Main Mix",
+          "audioUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/audio/gujhm8t9ksgptuc71qlj.mp3",
+          "duration": "3:30"
+        }
+      ]
+    },
+    {
+      "title": "Track 4",
+      "artist": "SoniQute",
+      "albumArtUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/art/e9yu1aliegzbb0fhr1fv.png",
+      "bpm": 140,
+      "clips": [
+        {
+          "label": "Main Mix",
+          "audioUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/audio/lfv7wvxkxj1rdc2yfhwy.mp3",
+          "duration": "3:30"
+        }
+      ]
+    },
+    {
+      "title": "Track 5",
+      "artist": "SoniQute",
+      "albumArtUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/art/xrhlzmjditcs5ntudxam.png",
+      "bpm": 110,
+      "clips": [
+        {
+          "label": "Main Mix",
+          "audioUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/audio/lphvvw0m813wkel8yuhd.mp3",
+          "duration": "3:30"
+        }
+      ]
+    },
+    {
+      "title": "Track 6",
+      "artist": "SoniQute",
+      "albumArtUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/art/zbzygypa7g6bjhy2rlnz.jpg",
+      "bpm": 130,
+      "clips": [
+        {
+          "label": "Main Mix",
+          "audioUrl": "https://storage.googleapis.com/soniqute-assets/qutie-tracks/audio/wx9fzu3crcv2cejucufd.mp3",
           "duration": "3:30"
         }
       ]
