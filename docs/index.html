@@ -3,591 +3,371 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SoniQute Dance Studio — Showcase</title>
+<title>PaMs Dance Studio — Showcase</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
-:root {
-  --bg: #0C060A;
-  --surface: rgba(255,255,255,0.03);
-  --surface-hover: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.08);
-  --border-hover: rgba(255,255,255,0.20);
-  --text: rgba(255,255,255,0.85);
-  --text-dim: rgba(255,255,255,0.45);
-  --text-faint: rgba(255,255,255,0.20);
-  --text-ghost: rgba(255,255,255,0.10);
-  --amber: #fbbf24;
-  --cyan: #34d399;
-  --pink: #f472b6;
-  --purple: #a78bfa;
-  --blue: #38bdf8;
+html,body{height:100%;font-family:'M PLUS Code Latin',ui-monospace,monospace;color:rgba(255,255,255,0.85);overflow:hidden;}
+
+body{
+  background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);
+  position:relative;
 }
 
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'M PLUS Code Latin', ui-monospace, monospace;
-  line-height: 1.5;
-  min-height: 100vh;
-  overflow-x: hidden;
+/* ── Animated bg radials ── */
+.bg-radials{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(circle at 20% 80%,rgba(255,107,157,.12) 0%,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(18,194,233,.12) 0%,transparent 50%),
+    radial-gradient(circle at 40% 40%,rgba(196,113,237,.08) 0%,transparent 50%);
 }
 
-/* ── Navigation ── */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 52px;
-  background: rgba(12,6,10,0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+/* ── Corner frame decorations ── */
+.corner-frame{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.cf-tl{position:absolute;top:0;left:0;width:80px;height:80px;border-left:4px solid rgba(34,211,238,.60);border-top:4px solid rgba(34,211,238,.60);border-top-left-radius:24px;}
+.cf-tr{position:absolute;top:0;right:0;width:80px;height:80px;border-right:4px solid rgba(244,114,182,.60);border-top:4px solid rgba(244,114,182,.60);border-top-right-radius:24px;}
+.cf-bl{position:absolute;bottom:0;left:0;width:80px;height:80px;border-left:4px solid rgba(192,132,252,.60);border-bottom:4px solid rgba(192,132,252,.60);border-bottom-left-radius:24px;}
+.cf-br{position:absolute;bottom:0;right:0;width:80px;height:80px;border-right:4px solid rgba(251,146,60,.60);border-bottom:4px solid rgba(251,146,60,.60);border-bottom-right-radius:24px;}
+.cf-left{position:absolute;top:80px;bottom:80px;left:0;width:2px;background:linear-gradient(to bottom,rgba(34,211,238,.30),rgba(192,132,252,.30));}
+.cf-right{position:absolute;top:80px;bottom:80px;right:0;width:2px;background:linear-gradient(to bottom,rgba(244,114,182,.30),rgba(251,146,60,.30));}
+.cf-top{position:absolute;top:0;left:80px;right:80px;height:2px;background:linear-gradient(to right,rgba(34,211,238,.30),rgba(244,114,182,.30),rgba(251,146,60,.30));}
+.cf-bottom{position:absolute;bottom:0;left:80px;right:80px;height:2px;background:linear-gradient(to right,rgba(192,132,252,.30),rgba(244,114,182,.30),rgba(251,146,60,.30));}
+
+/* ── App shell ── */
+.app{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;}
+
+/* ── Header ── */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.05);
+  flex-shrink:0;
+}
+.header-title h1{
+  font-size:20px;font-weight:900;letter-spacing:-.02em;
+  background:linear-gradient(90deg,#f472b6,#c084fc,#22d3ee);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.header-title p{font-size:11px;color:rgba(255,255,255,.30);margin-top:2px;}
+
+.tab-group{
+  display:flex;gap:4px;padding:4px;
+  border-radius:16px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);
+}
+.tab-btn{
+  padding:6px 16px;border-radius:12px;
+  font-size:11px;font-weight:700;font-family:inherit;
+  cursor:pointer;transition:all .15s;border:none;
+  color:rgba(255,255,255,.40);background:transparent;
+}
+.tab-btn:hover{color:rgba(255,255,255,.60);}
+.tab-btn.active{
+  background:linear-gradient(135deg,rgba(236,72,153,.40),rgba(168,85,247,.40));
+  color:#fff;border:1px solid rgba(244,114,182,.30);
+}
+.tab-badge{
+  margin-left:6px;font-size:9px;padding:2px 6px;
+  border-radius:9999px;background:rgba(236,72,153,.30);color:#f9a8d4;
 }
 
-.nav-logo {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  background: linear-gradient(90deg, #cfa9ff 0%, #ff8bd3 40%, #89d3ff 75%, #cfa9ff 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: sq-shift 14s ease-in-out infinite;
+/* ── Panel glass ── */
+.panel{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-radius:24px;
+  box-shadow:0 25px 50px -12px rgba(0,0,0,.40);
+  overflow:hidden;
 }
 
-@keyframes sq-shift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ── Studio 3-column layout ── */
+.studio-view{
+  flex:1;min-height:0;
+  display:grid;
+  grid-template-columns:260px 1fr 460px;
+  gap:12px;padding:12px;
 }
 
-.nav-tabs {
-  display: flex;
-  gap: 2px;
-  list-style: none;
+/* ── Left panel: Vibes ── */
+.left-panel{display:flex;flex-direction:column;padding:16px;gap:10px;}
+.vibes-scroll{flex:1;overflow-y:auto;scrollbar-width:none;}
+.vibes-scroll::-webkit-scrollbar{display:none;}
+.vibes-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:5px;
+}
+.vibe-tile{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:10px 4px 8px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  cursor:default;transition:transform .15s;
+}
+.vibe-tile:hover{transform:translateY(-1px);}
+.vibe-emoji{font-size:18px;line-height:1;}
+.vibe-name{font-size:7px;font-weight:700;letter-spacing:.09em;color:rgba(255,255,255,.55);text-transform:uppercase;text-align:center;}
+
+/* ── Middle panel ── */
+.middle-panel{display:flex;flex-direction:column;overflow:hidden;}
+.mid-top{flex-shrink:0;padding:12px;border-bottom:1px solid rgba(255,255,255,.08);}
+.mid-body{flex:1;min-height:0;overflow-y:auto;padding:12px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.12) transparent;}
+.mid-body::-webkit-scrollbar{width:4px;}
+.mid-body::-webkit-scrollbar-track{background:transparent;}
+.mid-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px;}
+.mid-bottom{flex-shrink:0;padding:12px;border-top:1px solid rgba(255,255,255,.08);}
+
+/* ── Right panel ── */
+.right-panel{display:flex;flex-direction:column;padding:16px;gap:14px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.12) transparent;}
+.right-panel::-webkit-scrollbar{width:4px;}
+.right-panel::-webkit-scrollbar-track{background:transparent;}
+.right-panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px;}
+
+/* ── Render Library view ── */
+.render-view{flex:1;min-height:0;padding:12px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.12) transparent;}
+.render-view::-webkit-scrollbar{width:4px;}
+.render-view::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px;}
+
+/* ── Section headings ── */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+.sec-label.amber{color:rgba(251,191,36,.70);}
+.sec-label.cyan{color:rgba(52,211,153,.70);}
+.sec-label.pink{color:rgba(244,114,182,.70);}
+.sec-label.purple{color:rgba(192,132,252,.70);}
+.sec-count{font-size:10px;color:rgba(255,255,255,.20);}
+
+/* ── Horizontal scroll row ── */
+.hscroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+.hscroll::-webkit-scrollbar{display:none;}
+
+/* ── Intro / Outro card ── */
+.intro-card{
+  flex-shrink:0;width:84px;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.50);
+  cursor:pointer;transition:border-color .2s;
+}
+.intro-card:hover{border-color:rgba(251,191,36,.40);}
+.intro-card.outro:hover{border-color:rgba(52,211,153,.40);}
+.intro-video-wrap{position:relative;aspect-ratio:9/16;overflow:hidden;background:rgba(0,0,0,.6);}
+.intro-video-wrap video{width:100%;height:100%;object-fit:cover;display:block;}
+.dur-badge{
+  position:absolute;bottom:6px;right:6px;
+  font-size:8px;color:rgba(255,255,255,.60);
+  background:rgba(0,0,0,.60);padding:2px 6px;border-radius:9999px;pointer-events:none;
+}
+.intro-label{
+  padding:3px 6px 4px;font-size:7px;color:rgba(255,255,255,.45);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(0,0,0,.40);
 }
 
-.nav-tab {
-  padding: 5px 11px;
-  border-radius: 10px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--text-faint);
-  cursor: pointer;
-  transition: all 0.15s;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: 1px solid transparent;
+/* ── Scene library ── */
+.filter-bar{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;}
+.filter-chip{
+  padding:3px 9px;border-radius:9999px;
+  font-size:9px;font-weight:700;letter-spacing:.06em;
+  border:1px solid rgba(255,255,255,.10);color:rgba(255,255,255,.25);
+  cursor:pointer;transition:all .15s;background:transparent;font-family:inherit;
 }
-.nav-tab:hover { color: var(--text-dim); background: var(--surface-hover); }
-.nav-tab.active { color: rgba(255,255,255,0.8); background: var(--surface-hover); border-color: var(--border-hover); }
+.filter-chip:hover{border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.50);}
+.filter-chip.active{border-color:rgba(207,169,255,.40);color:rgba(207,169,255,.80);background:rgba(207,169,255,.08);}
 
-/* ── Hero ── */
-.hero {
-  position: relative;
-  padding: 72px 24px 56px;
-  text-align: center;
-  overflow: hidden;
+.scenes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.scene-card{
+  border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.50);
+  cursor:pointer;transition:border-color .2s;position:relative;
 }
-
-.hero-glow {
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 640px;
-  height: 420px;
-  background: radial-gradient(ellipse at center, rgba(207,169,255,0.10) 0%, rgba(137,211,255,0.05) 55%, transparent 80%);
-  pointer-events: none;
+.scene-card:hover{border-color:rgba(255,255,255,.25);}
+.scene-video-wrap{position:relative;aspect-ratio:9/16;overflow:hidden;background:rgba(0,0,0,.6);}
+.scene-video-wrap video,.scene-video-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.vibe-badge{
+  position:absolute;top:6px;left:6px;
+  display:flex;align-items:center;gap:2px;
+  padding:2px 6px;border-radius:9999px;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(4px);
+  font-size:8px;font-weight:700;color:#fff;z-index:10;pointer-events:none;
 }
-
-.sq-title {
-  font-size: clamp(28px, 4.5vw, 52px);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #cfa9ff 0%, #ff8bd3 35%, #89d3ff 70%, #cfa9ff 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: sq-shift 14s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(207,169,255,.25)) drop-shadow(0 0 14px rgba(137,211,255,.18));
-  margin-bottom: 14px;
+.scene-play-overlay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.30);transition:opacity .15s;z-index:5;
 }
-
-.hero-sub {
-  font-size: 13px;
-  color: var(--text-dim);
-  max-width: 460px;
-  margin: 0 auto 20px;
-  line-height: 1.65;
+.scene-play-overlay.hidden{opacity:0;}
+.play-circle{
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(0,0,0,.60);border:1px solid rgba(255,255,255,.28);
+  display:flex;align-items:center;justify-content:center;color:#fff;
 }
-
-.hero-pills {
-  display: flex;
-  gap: 7px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-pill {
-  padding: 4px 11px;
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  border: 1px solid var(--border);
-  color: var(--text-ghost);
-  text-transform: uppercase;
-}
-
-/* ── Sections ── */
-.section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 44px 24px;
-}
-.section + .section { border-top: 1px solid var(--border); }
-
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.section-title {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-.section-title.amber  { color: rgba(251,191,36,0.70); }
-.section-title.cyan   { color: rgba(52,211,153,0.70); }
-.section-title.pink   { color: rgba(244,114,182,0.70); }
-.section-title.purple { color: rgba(167,139,250,0.70); }
-
-.section-count {
-  font-size: 10px;
-  color: var(--text-ghost);
-}
-
-/* ── Horizontal scroll (intros/outros) ── */
-.hscroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scrollbar-width: none;
-}
-.hscroll::-webkit-scrollbar { display: none; }
-
-/* ── Intro / Outro cards ── */
-.intro-card {
-  flex-shrink: 0;
-  width: 78px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background: rgba(0,0,0,0.4);
-}
-.intro-card:hover { border-color: rgba(251,191,36,0.35); }
-.intro-card.outro:hover { border-color: rgba(52,211,153,0.35); }
-
-.intro-card.amber-hi { border-color: rgba(251,191,36,0.55); box-shadow: 0 0 10px rgba(251,191,36,0.18); }
-.intro-card.cyan-hi  { border-color: rgba(52,211,153,0.55);  box-shadow: 0 0 10px rgba(52,211,153,0.15); }
-
-.intro-video-wrap {
-  position: relative;
-  aspect-ratio: 9/16;
-  overflow: hidden;
-  background: rgba(0,0,0,0.6);
-}
-.intro-video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.dur-badge {
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  font-size: 7px;
-  color: rgba(255,255,255,0.55);
-  background: rgba(0,0,0,0.6);
-  padding: 2px 5px;
-  border-radius: 100px;
-  pointer-events: none;
-}
-
-.intro-label {
-  padding: 3px 6px 4px;
-  font-size: 7px;
-  color: rgba(255,255,255,0.38);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: rgba(0,0,0,0.35);
-}
-
-/* ── Scene Library grid ── */
-.scenes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
-  gap: 6px;
-}
-
-.scene-card {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: rgba(0,0,0,0.5);
-  cursor: pointer;
-  transition: border-color 0.2s;
-  position: relative;
-}
-.scene-card:hover { border-color: rgba(255,255,255,0.22); }
-
-.scene-video-wrap {
-  position: relative;
-  aspect-ratio: 9/16;
-  overflow: hidden;
-  background: rgba(0,0,0,0.6);
-}
-.scene-video-wrap video, .scene-video-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.vibe-badge {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  padding: 2px 6px;
-  border-radius: 100px;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(4px);
-  font-size: 8px;
-  font-weight: 700;
-  color: #fff;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.scene-play-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.3);
-  transition: opacity 0.15s;
-  z-index: 5;
-}
-.scene-play-overlay.hidden { opacity: 0; }
-
-.play-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.60);
-  border: 1px solid rgba(255,255,255,0.28);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-
-.scene-footer {
-  padding: 3px 6px 4px;
-  font-size: 7px;
-  color: rgba(255,255,255,0.30);
-  background: rgba(0,0,0,0.30);
-}
-
-/* ── Render Library grid ── */
-.renders-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
-  gap: 10px;
-}
-
-.render-card {
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: rgba(0,0,0,0.5);
-  cursor: pointer;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.render-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
-
-.render-video-wrap {
-  position: relative;
-  aspect-ratio: 9/16;
-  overflow: hidden;
-  background: #000;
-}
-.render-video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.render-play {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.30);
-  transition: opacity 0.2s;
-}
-.render-card.playing .render-play        { opacity: 0; }
-.render-card.playing:hover .render-play  { opacity: 1; }
-
-.render-info {
-  padding: 8px 10px;
-  background: rgba(0,0,0,0.38);
-}
-.render-track  { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.75); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.render-artist { font-size: 9px; color: rgba(255,255,255,0.35); margin-top: 1px; }
-.render-date   { font-size: 8px; color: rgba(255,255,255,0.18); margin-top: 3px; }
+.scene-footer{padding:3px 6px 4px;font-size:7px;color:rgba(255,255,255,.30);background:rgba(0,0,0,.30);}
 
 /* ── Track list ── */
-.tracks-list { display: flex; flex-direction: column; gap: 5px; }
-
-.track-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  cursor: pointer;
-  transition: all 0.15s;
+.tracks-list{display:flex;flex-direction:column;gap:4px;}
+.track-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+  cursor:pointer;transition:all .15s;
 }
-.track-card:hover { background: var(--surface-hover); border-color: var(--border-hover); }
-.track-card.selected {
-  background: linear-gradient(135deg, rgba(244,114,182,0.10), rgba(167,139,250,0.10));
-  border-color: rgba(244,114,182,0.28);
+.track-row:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);}
+.track-row.selected{
+  background:linear-gradient(135deg,rgba(244,114,182,.10),rgba(167,139,250,.10));
+  border-color:rgba(244,114,182,.28);
 }
-
-.track-art {
-  width: 42px; height: 42px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  flex-shrink: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
+.track-art{width:38px;height:38px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.10);flex-shrink:0;background:rgba(0,0,0,.5);}
+.track-art img{width:100%;height:100%;object-fit:cover;display:block;}
+.track-info{flex:1;min-width:0;}
+.track-name{font-size:11px;font-weight:700;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.track-artist{font-size:9px;color:rgba(255,255,255,.40);margin-top:1px;}
+.track-bpm{font-size:10px;font-weight:700;color:#34d399;flex-shrink:0;}
+.preview-btn{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.50);cursor:pointer;transition:all .15s;flex-shrink:0;font-family:inherit;
 }
-.track-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.preview-btn:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22);color:#fff;}
+.preview-btn.playing{background:rgba(244,114,182,.18);border-color:rgba(244,114,182,.40);color:#f472b6;}
 
-.track-info { flex: 1; min-width: 0; }
-.track-title  { font-size: 12px; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.track-artist { font-size: 10px; color: var(--text-dim); margin-top: 1px; }
-
-.track-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; }
-.track-bpm   { font-size: 10px; color: var(--cyan); font-weight: 700; }
-.track-clips { font-size: 10px; color: var(--text-ghost); }
-
-.preview-btn {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: all 0.15s;
-  flex-shrink: 0;
+/* ── Render grid ── */
+.renders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+.render-card{
+  border-radius:14px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.50);
+  cursor:pointer;transition:border-color .2s,transform .2s;
 }
-.preview-btn:hover { background: var(--surface-hover); border-color: var(--border-hover); color: var(--text); }
-.preview-btn.playing { background: rgba(244,114,182,0.18); border-color: rgba(244,114,182,0.40); color: var(--pink); }
-
-.clip-list {
-  margin: 6px 14px 0;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.28);
-  border: 1px solid var(--border);
-  display: none;
-  flex-direction: column;
-  gap: 2px;
+.render-card:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px);}
+.render-video-wrap{position:relative;aspect-ratio:9/16;overflow:hidden;background:#000;}
+.render-video-wrap video{width:100%;height:100%;object-fit:cover;display:block;}
+.render-play{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.30);transition:opacity .2s;
 }
-.clip-list.open { display: flex; }
+.render-card.playing .render-play{opacity:0;}
+.render-card.playing:hover .render-play{opacity:1;}
+.render-info{padding:8px 10px;background:rgba(0,0,0,.35);}
+.render-track{font-size:10px;font-weight:700;color:rgba(255,255,255,.75);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.render-date{font-size:8px;color:rgba(255,255,255,.25);margin-top:2px;}
 
-.clip-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 5px 8px; border-radius: 8px;
-  transition: background 0.15s;
-}
-.clip-item:hover { background: var(--surface-hover); }
-.clip-label    { font-size: 11px; color: var(--text-dim); }
-.clip-duration { font-size: 10px; color: var(--text-ghost); }
+/* ── Shared utilities ── */
+.empty{display:flex;flex-direction:column;align-items:center;gap:6px;padding:20px;text-align:center;}
+.empty-icon{font-size:18px;opacity:.18;}
+.empty-text{font-size:10px;color:rgba(255,255,255,.20);}
+.loading-inline{display:flex;align-items:center;justify-content:center;gap:8px;padding:20px;color:rgba(255,255,255,.20);font-size:11px;}
+.app-loading{display:flex;align-items:center;justify-content:center;flex:1;gap:8px;color:rgba(255,255,255,.20);font-size:11px;}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.12);border-top-color:rgba(192,132,252,.70);border-radius:50%;animation:spin .85s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-/* ── Vibes grid ── */
-.vibes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
-  gap: 7px;
+/* ── Responsive collapse ── */
+@media(max-width:900px){
+  html,body{height:auto;overflow:auto;}
+  .studio-view{grid-template-columns:1fr;height:auto;}
+  .left-panel,.middle-panel,.right-panel{height:auto;max-height:none;overflow:visible;}
+  .middle-panel{display:block;}
+  .mid-top,.mid-body,.mid-bottom{overflow:visible;padding:12px;}
+  .mid-body{overflow-y:visible;}
+  .right-panel{overflow-y:visible;}
+  .render-view{height:auto;overflow-y:visible;}
+  .corner-frame{display:none;}
+  html,body{overflow-x:hidden;}
 }
 
-.vibe-tile {
-  display: flex; flex-direction: column; align-items: center; gap: 5px;
-  padding: 12px 6px 10px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  transition: transform 0.15s, border-color 0.15s;
-  cursor: default;
-}
-.vibe-tile:hover { transform: translateY(-1px); }
-.vibe-emoji { font-size: 20px; }
-.vibe-name  { font-size: 8px; font-weight: 700; letter-spacing: 0.09em; color: rgba(255,255,255,0.65); text-transform: uppercase; }
-
-/* ── Vibe filter chips ── */
-.filter-bar { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
-.filter-chip {
-  padding: 4px 10px;
-  border-radius: 100px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  border: 1px solid var(--border);
-  color: var(--text-ghost);
-  cursor: pointer;
-  transition: all 0.15s;
-  background: transparent;
-}
-.filter-chip:hover { border-color: var(--border-hover); color: var(--text-dim); }
-.filter-chip.active {
-  border-color: rgba(207,169,255,0.40);
-  color: rgba(207,169,255,0.80);
-  background: rgba(207,169,255,0.08);
-}
-
-/* ── Empty state ── */
-.empty-state {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 44px 24px;
-  border: 1px dashed var(--border);
-  border-radius: 16px;
-}
-.empty-icon { font-size: 22px; opacity: 0.18; }
-.empty-text { font-size: 11px; color: var(--text-ghost); text-align: center; line-height: 1.6; }
-
-/* ── Loading ── */
-.loading {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  min-height: 240px; gap: 12px;
-  color: var(--text-ghost); font-size: 11px;
-}
-.spinner {
-  width: 22px; height: 22px;
-  border: 2px solid var(--border);
-  border-top-color: rgba(207,169,255,0.65);
-  border-radius: 50%;
-  animation: spin 0.85s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── Footer ── */
-.footer {
-  padding: 28px 24px;
-  text-align: center;
-  font-size: 10px;
-  color: var(--text-ghost);
-  border-top: 1px solid var(--border);
-  letter-spacing: 0.06em;
-}
-.footer a { color: var(--text-ghost); text-decoration: none; }
-.footer a:hover { color: var(--text-faint); }
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
-
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  .nav-tabs { display: none; }
-  .sq-title { font-size: 28px; }
-  .scenes-grid { grid-template-columns: repeat(3, 1fr); }
-  .renders-grid { grid-template-columns: repeat(2, 1fr); }
-  .vibes-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sq-title, .nav-logo { animation: none; }
+@media(prefers-reduced-motion:reduce){
+  .spinner{animation:none;}
 }
 </style>
 </head>
 <body>
 
-<nav class="nav" id="top">
-  <span class="nav-logo">SONIQUTE</span>
-  <ul class="nav-tabs">
-    <li><a href="#intros"  class="nav-tab">Intros</a></li>
-    <li><a href="#scenes"  class="nav-tab">Scenes</a></li>
-    <li><a href="#renders" class="nav-tab">Renders</a></li>
-    <li><a href="#tracks"  class="nav-tab">Tracks</a></li>
-    <li><a href="#vibes"   class="nav-tab">Vibes</a></li>
-  </ul>
-</nav>
+<div class="bg-radials"></div>
+<div class="corner-frame">
+  <div class="cf-tl"></div><div class="cf-tr"></div>
+  <div class="cf-bl"></div><div class="cf-br"></div>
+  <div class="cf-left"></div><div class="cf-right"></div>
+  <div class="cf-top"></div><div class="cf-bottom"></div>
+</div>
 
-<div class="hero">
-  <div class="hero-glow"></div>
-  <h1 class="sq-title">SoniQute Dance Studio</h1>
-  <p class="hero-sub">AI-generated dance videos for PaMs NFT holders — pick a character, choose a vibe, watch your NFT move.</p>
-  <div class="hero-pills">
-    <span class="hero-pill">WaveSpeed Seedance 2.0</span>
-    <span class="hero-pill">FFmpeg · Shotstack</span>
-    <span class="hero-pill">9:16 · TikTok Ready</span>
-    <span class="hero-pill">16 Dance Vibes</span>
-    <span class="hero-pill">1,000 PaMs Characters</span>
+<div class="app">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-title">
+      <h1>PaMs Dance Studio</h1>
+      <p>Connect · Generate · Share</p>
+    </div>
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="switchTab('studio',this)">Studio</button>
+      <button class="tab-btn" onclick="switchTab('renders',this)">
+        Render Library <span class="tab-badge" id="renders-badge">0</span>
+      </button>
+    </div>
   </div>
-</div>
 
-<div id="app">
-  <div class="loading"><div class="spinner"></div>Loading content…</div>
-</div>
+  <!-- Loading -->
+  <div class="app-loading" id="app-loading"><div class="spinner"></div> Loading…</div>
 
-<footer class="footer">
-  <p>SoniQute Dance Studio &nbsp;·&nbsp; PaMs NFT Collection &nbsp;·&nbsp; WaveSpeed Seedance 2.0</p>
-  <p style="margin-top:5px"><a href="https://github.com/Metafiziks/soniqute-dance-studio">github.com/Metafiziks/soniqute-dance-studio</a></p>
-</footer>
+  <!-- Studio view -->
+  <div class="studio-view" id="studio-view" style="display:none">
+
+    <!-- LEFT: Dance Vibes -->
+    <div class="panel left-panel">
+      <div class="sec-head">
+        <span class="sec-label purple">⚡ Dance Vibes</span>
+        <span class="sec-count">16</span>
+      </div>
+      <div class="vibes-scroll">
+        <div class="vibes-grid" id="vibes-grid"></div>
+      </div>
+    </div>
+
+    <!-- MIDDLE: Intro · Scenes · Outro -->
+    <div class="panel middle-panel">
+
+      <div class="mid-top">
+        <div class="sec-head">
+          <span class="sec-label amber">🎬 Intro Scenes</span>
+          <span class="sec-count" id="intro-count">0</span>
+        </div>
+        <div class="hscroll" id="intro-row"></div>
+      </div>
+
+      <div class="mid-body" id="scenes-body">
+        <div class="loading-inline"><div class="spinner"></div></div>
+      </div>
+
+      <div class="mid-bottom">
+        <div class="sec-head">
+          <span class="sec-label cyan">🎬 Outro Scenes</span>
+          <span class="sec-count" id="outro-count">0</span>
+        </div>
+        <div class="hscroll" id="outro-row"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Music Tracks -->
+    <div class="panel right-panel">
+      <div class="sec-head">
+        <span class="sec-label pink">🎵 Music Tracks</span>
+        <span class="sec-count" id="tracks-count">0 tracks</span>
+      </div>
+      <div class="tracks-list" id="tracks-list">
+        <div class="loading-inline"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Render Library view -->
+  <div class="render-view" id="renders-view" style="display:none">
+    <div class="renders-grid" id="renders-grid"></div>
+  </div>
+
+</div><!-- /.app -->
 
 <script>
-// ── Vibe definitions (mirrors pams-studio/page.tsx exactly) ──────────────────
+// ── Vibes ──────────────────────────────────────────────────────────────────────
 const VIBES = [
   { id:"hype",          label:"Hype",        emoji:"🔥", color:"#f97316" },
   { id:"chill",         label:"Chill",       emoji:"😎", color:"#0ea5e9" },
@@ -606,59 +386,56 @@ const VIBES = [
   { id:"electricslide", label:"Electric",    emoji:"⚡", color:"#38bdf8" },
   { id:"kpop",          label:"K-Pop",       emoji:"🎤", color:"#fb7185" },
 ];
-const VIBE_MAP = Object.fromEntries(VIBES.map(v => [v.id, v]));
+const VIBE_MAP = Object.fromEntries(VIBES.map(v=>[v.id,v]));
 
-// ── Audio state ───────────────────────────────────────────────────────────────
-let currentAudio = null;
-let currentAudioIdx = null;
+// ── Icons ──────────────────────────────────────────────────────────────────────
+const PLAY  = `<svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>`;
+const PAUSE = `<svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>`;
 
-// ── Scene library data (kept for vibe filter re-render) ───────────────────────
+// ── Audio state ────────────────────────────────────────────────────────────────
+let audio = null, audioIdx = null;
+
+// ── Scene library state ────────────────────────────────────────────────────────
 let _scenes = [];
 
-// ── Icons ────────────────────────────────────────────────────────────────────
-const PLAY_ICON  = `<svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>`;
-const PAUSE_ICON = `<svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>`;
+// ── Tab state ──────────────────────────────────────────────────────────────────
+let _activeTab = 'studio';
 
-function fmtDate(iso) {
-  if (!iso) return '';
-  return new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+function switchTab(tab, btn) {
+  _activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('studio-view').style.display = tab === 'studio' ? 'grid' : 'none';
+  document.getElementById('renders-view').style.display = tab === 'renders' ? 'flex' : 'none';
 }
 
-// ── Intro / Outro cards ───────────────────────────────────────────────────────
-function buildIntroCards(scenes, accentClass) {
-  if (!scenes.length) return `<div class="empty-state"><span class="empty-icon">🎬</span><p class="empty-text">No scenes yet</p></div>`;
-  return `<div class="hscroll">${scenes.map(s => `
-    <div class="intro-card ${accentClass}">
-      <div class="intro-video-wrap">
-        <video src="${s.videoUrl}" ${s.thumbnailUrl?`poster="${s.thumbnailUrl}"`:''}
-          autoplay loop muted playsinline></video>
-        <span class="dur-badge">${s.duration}s</span>
-      </div>
-      <div class="intro-label">${s.title}</div>
-    </div>`).join('')}</div>`;
+// ── Build: Vibes ───────────────────────────────────────────────────────────────
+function buildVibes() {
+  document.getElementById('vibes-grid').innerHTML = VIBES.map(v => `
+    <div class="vibe-tile" style="background:${v.color}18;border-color:${v.color}30">
+      <span class="vibe-emoji">${v.emoji}</span>
+      <span class="vibe-name">${v.label}</span>
+    </div>`).join('');
 }
 
-// ── Scene library ─────────────────────────────────────────────────────────────
-function buildSceneGrid(scenes, filter) {
-  const list = filter ? scenes.filter(s => s.vibeId === filter) : scenes;
-  if (!list.length) return `<div class="empty-state"><span class="empty-icon">🎥</span><p class="empty-text">${filter ? 'No scenes for this vibe' : 'No scenes yet'}</p></div>`;
-  return `<div class="scenes-grid">${list.map(s => {
-    const v = VIBE_MAP[s.vibeId] || { emoji:'🎭', label: s.vibeId || '', color:'#888' };
-    return `<div class="scene-card" onclick="toggleScene(this)">
-      <div class="scene-video-wrap">
-        ${s.videoUrl
-          ? `<video src="${s.videoUrl}" ${s.nftImageUrl?`poster="${s.nftImageUrl}"`:''}
-               loop muted playsinline></video>`
-          : s.nftImageUrl ? `<img src="${s.nftImageUrl}" alt="#${s.tokenId}">` : '<div style="background:#111;width:100%;height:100%"></div>'}
-        <div class="vibe-badge"><span>${v.emoji}</span><span>${v.label}</span></div>
-        ${s.videoUrl ? `<div class="scene-play-overlay"><div class="play-circle">${PLAY_ICON}</div></div>` : ''}
-        <span class="dur-badge">${s.duration || '5s'}</span>
-      </div>
-      <div class="scene-footer">#${s.tokenId}</div>
-    </div>`;
-  }).join('')}</div>`;
+// ── Build: Intro / Outro rows ─────────────────────────────────────────────────
+function buildIntroRow(scenes, containerId, countId, isOutro) {
+  document.getElementById(countId).textContent = scenes.length;
+  const cls = isOutro ? 'outro' : '';
+  document.getElementById(containerId).innerHTML = scenes.length
+    ? scenes.map(s => `
+        <div class="intro-card ${cls}" onclick="toggleIntro(this)">
+          <div class="intro-video-wrap">
+            <video src="${s.videoUrl}" ${s.thumbnailUrl?`poster="${s.thumbnailUrl}"`:''}
+              autoplay loop muted playsinline></video>
+            <span class="dur-badge">${s.duration}s</span>
+          </div>
+          <div class="intro-label">${s.title}</div>
+        </div>`).join('')
+    : `<div class="empty-text" style="padding:8px 0">No scenes uploaded yet</div>`;
 }
 
+// ── Build: Scene Library ───────────────────────────────────────────────────────
 function buildVibeFilters(scenes) {
   const used = [...new Set(scenes.map(s => s.vibeId).filter(Boolean))];
   if (used.length < 2) return '';
@@ -671,216 +448,157 @@ function buildVibeFilters(scenes) {
   </div>`;
 }
 
-// ── Render library ────────────────────────────────────────────────────────────
-function buildRenderGrid(videos) {
-  if (!videos.length) return `<div class="empty-state"><span class="empty-icon">✨</span><p class="empty-text">No renders yet</p></div>`;
-  return `<div class="renders-grid">${videos.map(v => `
-    <div class="render-card" onclick="toggleRender(this)">
-      <div class="render-video-wrap">
-        <video src="${v.videoUrl}" loop playsinline muted></video>
-        <div class="render-play"><div class="play-circle">${PLAY_ICON}</div></div>
+function buildSceneGrid(scenes, filter) {
+  const list = filter ? scenes.filter(s => s.vibeId === filter) : scenes;
+  if (!list.length) return `<div class="empty"><span class="empty-icon">🎥</span><p class="empty-text">${filter?'No scenes for this vibe':'No scenes yet'}</p></div>`;
+  return `<div class="scenes-grid">${list.map(s => {
+    const v = VIBE_MAP[s.vibeId] || { emoji:'🎭', label: s.vibeId || '', color:'#888' };
+    const label = s.characterName || (s.tokenId ? `#${s.tokenId}` : 'PaMs');
+    return `<div class="scene-card" onclick="toggleScene(this)">
+      <div class="scene-video-wrap">
+        ${s.videoUrl
+          ? `<video src="${s.videoUrl}" ${s.nftImageUrl?`poster="${s.nftImageUrl}"`:''}
+               loop muted playsinline></video>`
+          : s.nftImageUrl ? `<img src="${s.nftImageUrl}" alt="${label}">` : '<div style="background:#111;width:100%;height:100%"></div>'}
+        <div class="vibe-badge"><span>${v.emoji}</span><span>${v.label}</span></div>
+        ${s.videoUrl ? `<div class="scene-play-overlay"><div class="play-circle">${PLAY}</div></div>` : ''}
+        <span class="dur-badge">${s.duration||'5s'}</span>
       </div>
-      <div class="render-info">
-        <div class="render-track">${v.trackTitle || 'Untitled'}</div>
-        ${v.trackArtist ? `<div class="render-artist">${v.trackArtist}</div>` : ''}
-        ${v.createdAt   ? `<div class="render-date">${fmtDate(v.createdAt)}</div>` : ''}
-      </div>
-    </div>`).join('')}</div>`;
+      <div class="scene-footer">${label}</div>
+    </div>`;
+  }).join('')}</div>`;
 }
 
-// ── Tracks ────────────────────────────────────────────────────────────────────
-function buildTrackList(tracks) {
-  if (!tracks.length) return `<div class="empty-state"><span class="empty-icon">🎵</span><p class="empty-text">No tracks yet</p></div>`;
-  return `<div class="tracks-list">${tracks.map((t, i) => `
-    <div>
-      <div class="track-card" onclick="expandTrack(${i})">
-        <div class="track-art">
-          ${t.albumArtUrl ? `<img src="${t.albumArtUrl}" alt="${t.title}">` : '🎵'}
-        </div>
-        <div class="track-info">
-          <div class="track-title">${t.title}</div>
-          <div class="track-artist">${t.artist}</div>
-        </div>
-        <div class="track-meta">
-          ${t.bpm ? `<span class="track-bpm">${t.bpm} BPM</span>` : ''}
-          <span class="track-clips">${(t.clips||[]).length} clip${(t.clips||[]).length!==1?'s':''}</span>
-        </div>
-        ${(t.clips||[]).length > 0 ? `
-          <button class="preview-btn" id="prev-${i}"
-            onclick="event.stopPropagation(); togglePreview(${i},'${t.clips[0].audioUrl}')">
-            ${PLAY_ICON}
-          </button>` : ''}
-      </div>
-      ${(t.clips||[]).length > 1 ? `
-        <div class="clip-list" id="clips-${i}">
-          ${t.clips.map((c, ci) => `
-            <div class="clip-item">
-              <span class="clip-label">${c.label || 'Clip '+(ci+1)}</span>
-              ${c.duration ? `<span class="clip-duration">${c.duration}</span>` : ''}
-            </div>`).join('')}
-        </div>` : ''}
-    </div>`).join('')}</div>`;
-}
-
-// ── Vibes reference grid ──────────────────────────────────────────────────────
-function buildVibesGrid() {
-  return `<div class="vibes-grid">${VIBES.map(v =>
-    `<div class="vibe-tile" style="background:${v.color}18;border-color:${v.color}30">
-      <span class="vibe-emoji">${v.emoji}</span>
-      <span class="vibe-name">${v.label}</span>
-    </div>`).join('')}</div>`;
-}
-
-// ── Interaction handlers ──────────────────────────────────────────────────────
-function toggleScene(card) {
-  const vid = card.querySelector('video');
-  const ov  = card.querySelector('.scene-play-overlay');
-  if (!vid) return;
-  if (vid.paused) { vid.play(); ov && ov.classList.add('hidden'); }
-  else            { vid.pause(); ov && ov.classList.remove('hidden'); }
-}
-
-function toggleRender(card) {
-  const vid = card.querySelector('video');
-  if (!vid) return;
-  if (vid.paused) { vid.muted = false; vid.volume = 1; vid.play(); card.classList.add('playing'); }
-  else            { vid.pause(); card.classList.remove('playing'); }
-}
-
-function togglePreview(idx, url) {
-  const btn = document.getElementById(`prev-${idx}`);
-  if (currentAudioIdx === idx) {
-    currentAudio?.pause(); currentAudio = null; currentAudioIdx = null;
-    btn && (btn.innerHTML = PLAY_ICON) && btn.classList.remove('playing');
-    return;
-  }
-  if (currentAudio) {
-    currentAudio.pause();
-    const old = document.getElementById(`prev-${currentAudioIdx}`);
-    old && (old.innerHTML = PLAY_ICON) && old.classList.remove('playing');
-  }
-  currentAudio = new Audio(url);
-  currentAudio.play().catch(() => {});
-  currentAudio.onended = () => {
-    btn && (btn.innerHTML = PLAY_ICON) && btn.classList.remove('playing');
-    currentAudioIdx = null;
-  };
-  currentAudioIdx = idx;
-  btn && (btn.innerHTML = PAUSE_ICON) && btn.classList.add('playing');
-}
-
-function expandTrack(idx) {
-  const el = document.getElementById(`clips-${idx}`);
-  if (el) el.classList.toggle('open');
+function renderScenes(filter) {
+  document.getElementById('scenes-body').innerHTML =
+    buildVibeFilters(_scenes) + buildSceneGrid(_scenes, filter);
 }
 
 function setFilter(vibeId, el) {
   document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('scene-grid').innerHTML = buildSceneGrid(_scenes, vibeId);
+  const grid = document.getElementById('scenes-body').querySelector('.scenes-grid');
+  if (grid) grid.outerHTML = buildSceneGrid(_scenes, vibeId);
+  else document.getElementById('scenes-body').innerHTML =
+    buildVibeFilters(_scenes) + buildSceneGrid(_scenes, vibeId);
 }
 
-// ── Main render ───────────────────────────────────────────────────────────────
-function renderApp(data) {
-  const introScenes  = data.intro_scenes  || [];
-  const outroScenes  = data.outro_scenes  || [];
-  const sceneLib     = data.scene_library || [];
-  const renderLib    = data.render_library || [];
-  const tracks       = data.tracks        || [];
-  _scenes = sceneLib;
-
-  document.getElementById('app').innerHTML = `
-    <!-- Intro Scenes -->
-    <div class="section" id="intros">
-      <div class="section-header">
-        <h2 class="section-title amber">🎬 Intro Scenes</h2>
-        <span class="section-count">${introScenes.length}</span>
-      </div>
-      ${buildIntroCards(introScenes, 'amber-hi')}
-    </div>
-
-    ${outroScenes.length ? `
-    <!-- Outro Scenes -->
-    <div class="section" id="outros">
-      <div class="section-header">
-        <h2 class="section-title cyan">🎬 Outro Scenes</h2>
-        <span class="section-count">${outroScenes.length}</span>
-      </div>
-      ${buildIntroCards(outroScenes, 'cyan-hi outro')}
-    </div>` : ''}
-
-    <!-- Scene Library -->
-    <div class="section" id="scenes">
-      <div class="section-header">
-        <h2 class="section-title">Scene Library</h2>
-        <span class="section-count">${sceneLib.length} scenes</span>
-      </div>
-      ${buildVibeFilters(sceneLib)}
-      <div id="scene-grid">${buildSceneGrid(sceneLib, null)}</div>
-    </div>
-
-    <!-- Render Library -->
-    <div class="section" id="renders">
-      <div class="section-header">
-        <h2 class="section-title pink">✨ Render Library</h2>
-        <span class="section-count">${renderLib.length} videos</span>
-      </div>
-      ${buildRenderGrid(renderLib)}
-    </div>
-
-    <!-- Music Tracks -->
-    <div class="section" id="tracks">
-      <div class="section-header">
-        <h2 class="section-title cyan">🎵 Music Tracks</h2>
-        <span class="section-count">${tracks.length} tracks</span>
-      </div>
-      ${buildTrackList(tracks)}
-    </div>
-
-    <!-- Vibes Reference -->
-    <div class="section" id="vibes">
-      <div class="section-header">
-        <h2 class="section-title purple">⚡ Dance Vibes</h2>
-        <span class="section-count">16 vibes</span>
-      </div>
-      ${buildVibesGrid()}
-    </div>
-  `;
-
-  // Active nav tab on scroll
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-        const match = document.querySelector(`.nav-tab[href="#${e.target.id}"]`);
-        if (match) match.classList.add('active');
-      }
-    });
-  }, { threshold: 0.35 });
-  ['intros','scenes','renders','tracks','vibes'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) obs.observe(el);
-  });
+// ── Build: Tracks ──────────────────────────────────────────────────────────────
+function buildTracks(tracks) {
+  document.getElementById('tracks-count').textContent = `${tracks.length} track${tracks.length!==1?'s':''}`;
+  document.getElementById('tracks-list').innerHTML = tracks.length
+    ? tracks.map((t, i) => `
+        <div class="track-row" onclick="selectTrack(this)">
+          <div class="track-art">
+            ${t.albumArtUrl ? `<img src="${t.albumArtUrl}" alt="${t.title}">` : '🎵'}
+          </div>
+          <div class="track-info">
+            <div class="track-name">${t.title}</div>
+            <div class="track-artist">${t.artist}</div>
+          </div>
+          ${t.bpm ? `<span class="track-bpm">${t.bpm}</span>` : ''}
+          ${(t.clips||[]).length > 0 ? `
+            <button class="preview-btn" id="prev-${i}"
+              onclick="event.stopPropagation();toggleAudio(${i},'${t.clips[0].audioUrl}')">
+              ${PLAY}
+            </button>` : ''}
+        </div>`).join('')
+    : `<div class="empty"><span class="empty-icon">🎵</span><p class="empty-text">No tracks yet</p></div>`;
 }
 
-// ── Boot ──────────────────────────────────────────────────────────────────────
+// ── Build: Render Library ──────────────────────────────────────────────────────
+function buildRenders(videos) {
+  document.getElementById('renders-badge').textContent = videos.length;
+  document.getElementById('renders-grid').innerHTML = videos.length
+    ? videos.map(v => `
+        <div class="render-card" onclick="toggleRender(this)">
+          <div class="render-video-wrap">
+            <video src="${v.videoUrl}" loop playsinline muted></video>
+            <div class="render-play"><div class="play-circle">${PLAY}</div></div>
+          </div>
+          <div class="render-info">
+            <div class="render-track">${v.trackTitle||'Render'}</div>
+            ${v.createdAt ? `<div class="render-date">${fmtDate(v.createdAt)}</div>` : ''}
+          </div>
+        </div>`).join('')
+    : `<div class="empty"><span class="empty-icon">✨</span><p class="empty-text">No renders yet</p></div>`;
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+
+function toggleIntro(card) {
+  const v = card.querySelector('video');
+  if (!v) return;
+  v.paused ? v.play() : v.pause();
+}
+
+function toggleScene(card) {
+  const vid = card.querySelector('video');
+  const ov  = card.querySelector('.scene-play-overlay');
+  if (!vid) return;
+  if (vid.paused) { vid.play(); ov&&ov.classList.add('hidden'); }
+  else { vid.pause(); ov&&ov.classList.remove('hidden'); }
+}
+
+function toggleRender(card) {
+  const vid = card.querySelector('video');
+  if (!vid) return;
+  if (vid.paused) { vid.muted=false; vid.volume=1; vid.play(); card.classList.add('playing'); }
+  else { vid.pause(); card.classList.remove('playing'); }
+}
+
+function selectTrack(row) {
+  document.querySelectorAll('.track-row').forEach(r => r.classList.remove('selected'));
+  row.classList.add('selected');
+}
+
+function toggleAudio(idx, url) {
+  const btn = document.getElementById(`prev-${idx}`);
+  if (audioIdx === idx) {
+    audio?.pause(); audio = null; audioIdx = null;
+    if (btn) { btn.innerHTML = PLAY; btn.classList.remove('playing'); }
+    return;
+  }
+  if (audio) {
+    audio.pause();
+    const old = document.getElementById(`prev-${audioIdx}`);
+    if (old) { old.innerHTML = PLAY; old.classList.remove('playing'); }
+  }
+  audio = new Audio(url);
+  audio.play().catch(()=>{});
+  audio.onended = () => {
+    if (btn) { btn.innerHTML = PLAY; btn.classList.remove('playing'); }
+    audioIdx = null;
+  };
+  audioIdx = idx;
+  if (btn) { btn.innerHTML = PAUSE; btn.classList.add('playing'); }
+}
+
+// ── Boot ───────────────────────────────────────────────────────────────────────
 (async function init() {
+  buildVibes();
   try {
     const res = await fetch('./data.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    renderApp(await res.json());
+    const data = await res.json();
+
+    _scenes = data.scene_library || [];
+
+    buildIntroRow(data.intro_scenes || [], 'intro-row', 'intro-count', false);
+    buildIntroRow(data.outro_scenes || [], 'outro-row', 'outro-count', true);
+    renderScenes(null);
+    buildTracks(data.tracks || []);
+    buildRenders(data.render_library || []);
+
   } catch (e) {
-    document.getElementById('app').innerHTML = `
-      <div class="section">
-        <div class="empty-state">
-          <span class="empty-icon">⚠️</span>
-          <p class="empty-text">Could not load data.json<br>
-          <span style="font-size:9px;color:rgba(255,255,255,0.10)">${e.message}</span></p>
-          <p class="empty-text" style="margin-top:8px;font-size:9px">
-            Populate docs/data.json with your GCS video URLs to fill this page.
-          </p>
-        </div>
-      </div>`;
+    document.getElementById('scenes-body').innerHTML =
+      `<div class="empty"><span class="empty-icon">⚠️</span><p class="empty-text">Could not load data.json<br><span style="font-size:9px;opacity:.5">${e.message}</span></p></div>`;
+  } finally {
+    document.getElementById('app-loading').style.display = 'none';
+    document.getElementById('studio-view').style.display = 'grid';
   }
 })();
 </script>
