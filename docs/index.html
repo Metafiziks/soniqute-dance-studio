@@ -593,10 +593,17 @@ function checkActsReady() {
 
 function prefillEditSuite(intros, scenes, outros) {
   if (intros.length>0) fillSlot('suite-intro-slot', intros[0].videoUrl);
-  if (scenes[0]) fillActSlot('act1-slot', scenes[0].videoUrl, 'act1');
-  if (scenes[1]) fillActSlot('act2-slot', scenes[1].videoUrl, 'act2');
-  if (scenes[2]) fillActSlot('act3-slot', scenes[2].videoUrl, 'act3');
-  if (outros.length>0) fillSlot('suite-outro-slot', outros[0].videoUrl);
+  // PRISMA's scenes: Electric → ACT 1, Fierce → ACT 2, Groovy → ACT 3
+  const find = (vibeId) => scenes.find(s => s.characterName==='PaMs Custom' && s.vibeId===vibeId);
+  const electric = find('electricslide');
+  const fierce   = find('fierce');
+  const groovy   = find('groovy');
+  if (electric) fillActSlot('act1-slot', electric.videoUrl, 'act1');
+  if (fierce)   fillActSlot('act2-slot', fierce.videoUrl,   'act2');
+  if (groovy)   fillActSlot('act3-slot', groovy.videoUrl,   'act3');
+  // Outro Scene 4 (index 3)
+  const outro4 = outros[3] || outros[0];
+  if (outro4) fillSlot('suite-outro-slot', outro4.videoUrl);
   checkActsReady();
 }
 
