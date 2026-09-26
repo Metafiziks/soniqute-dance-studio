@@ -1,5 +1,21 @@
 {
   "custom_characters": [
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992354330-xlf6qn5bhyo.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992371237-nyns9hrz0v.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992382606-lsecy9o50zg.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992392442-bhydd5mu8uc.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992400620-ma9lrgku7g.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992411560-sefkbn0ap27.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992424773-crcfg50ebho.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992434696-ifpldlpzkp.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992443702-h7hc1i7oahp.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992452662-9jxq364a4k.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992479505-u1qx07dhiwd.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992510765-1sij82ixvkb.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992523188-s75qi19429.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992534246-j3n8sycr5to.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992543190-e9qfdexny1v.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/1788992556784-qknifv6zvan.png",
     "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/ahrtdftcply4ewbjxdsl.png",
     "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/b56nw80vatwdakqoqef8.png",
     "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/c25j2pfpb0bd7ttglmcv.png",
@@ -19,7 +35,40 @@
     "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/scwo2mdoq4duiqa4w923.png",
     "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/sldv3qs3cj7eicotvovm.png",
     "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/tkgwwkbbmtrzjalddy0r.jpg",
-    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/vzpbdgfebitgxkvaendg.jpg"
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/vzpbdgfebitgxkvaendg.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/wo7wjzqvkle22hllzqvp.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/xejg9lanawep9tuxlbov.jpg",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/yh1mrzcpg9rsiieeoaej.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/zpenvp2aedxq7miaiwex.png",
+    "https://storage.googleapis.com/soniqute-assets/soniqute/custom-characters/zzdpuwvgdvrqimz2lk8p.jpg"
+  ],
+  "backgrounds": [
+    {"id":"dancefloor","label":"Dancefloor","emoji":"🪩"},
+    {"id":"stage","label":"Stage","emoji":"🎤"},
+    {"id":"underwater","label":"Underwater","emoji":"🐠"},
+    {"id":"neon_city","label":"Neon City","emoji":"🌃"},
+    {"id":"beach","label":"Beach","emoji":"🏖️"},
+    {"id":"space","label":"Space","emoji":"🌌"},
+    {"id":"studio","label":"Studio","emoji":"🎬"},
+    {"id":"rooftop","label":"Rooftop","emoji":"🏙️"},
+    {"id":"forest","label":"Forest","emoji":"🌲"},
+    {"id":"arcade","label":"Arcade","emoji":"🕹️"},
+    {"id":"runway","label":"Runway","emoji":"💃"},
+    {"id":"snow","label":"Snow","emoji":"❄️"}
+  ],
+  "cameras": [
+    {"id":"tracking","label":"Tracking","emoji":"🎥"},
+    {"id":"follow","label":"Follow","emoji":"🏃"},
+    {"id":"orbit","label":"Orbit 360","emoji":"🔄"},
+    {"id":"crane_up","label":"Crane Up","emoji":"🏗️"},
+    {"id":"drone","label":"Drone","emoji":"🚁"},
+    {"id":"fpv","label":"FPV Drone","emoji":"🛸"},
+    {"id":"push_in","label":"Push In","emoji":"🔍"},
+    {"id":"pull_out","label":"Pull Out","emoji":"🔭"},
+    {"id":"pan","label":"Pan","emoji":"↔️"},
+    {"id":"low_angle","label":"Low Angle","emoji":"📐"},
+    {"id":"overhead","label":"Overhead","emoji":"🚀"},
+    {"id":"handheld","label":"Handheld","emoji":"🤳"}
   ],
   "intro_scenes": [
     {

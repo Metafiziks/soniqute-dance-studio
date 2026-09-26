@@ -35,6 +35,11 @@ body{background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);position:r
 .tab-btn:hover{color:rgba(255,255,255,.60);}
 .tab-btn.active{background:linear-gradient(135deg,rgba(236,72,153,.40),rgba(168,85,247,.40));color:#fff;border:1px solid rgba(244,114,182,.30);}
 .tab-badge{margin-left:6px;font-size:9px;padding:2px 6px;border-radius:9999px;background:rgba(236,72,153,.30);color:#f9a8d4;}
+.header-controls{display:flex;align-items:center;gap:10px;}
+.aspect-toggle{display:flex;gap:2px;padding:4px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);}
+.aspect-btn{padding:6px 14px;border-radius:12px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .15s;border:none;color:rgba(255,255,255,.40);background:transparent;}
+.aspect-btn:hover{color:rgba(255,255,255,.60);}
+.aspect-btn.active{background:linear-gradient(135deg,rgba(34,211,238,.35),rgba(59,130,246,.35));color:#fff;border:1px solid rgba(34,211,238,.30);}
 
 /* Panel glass */
 .panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:24px;box-shadow:0 25px 50px -12px rgba(0,0,0,.40);overflow:hidden;}
@@ -70,6 +75,15 @@ body{background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);position:r
 .vibe-name{font-size:6px;font-weight:700;letter-spacing:.07em;color:rgba(255,255,255,.45);text-transform:uppercase;text-align:center;}
 .generate-btn{width:100%;padding:10px;border-radius:12px;font-size:11px;font-weight:800;font-family:inherit;letter-spacing:.05em;cursor:pointer;transition:all .15s;background:linear-gradient(135deg,rgba(236,72,153,.70),rgba(168,85,247,.70));border:1px solid rgba(244,114,182,.30);color:#fff;}
 .generate-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(236,72,153,.22);}
+
+.opt-details{border-top:1px solid rgba(255,255,255,.06);padding-top:6px;}
+.opt-summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none;padding:2px 0;user-select:none;}
+.opt-summary::-webkit-details-marker{display:none;}
+.opt-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.opt-optional{font-size:8px;font-weight:400;color:rgba(255,255,255,.22);text-transform:none;letter-spacing:0;margin-left:3px;}
+.opt-chevron{font-size:9px;color:rgba(255,255,255,.25);transition:transform .15s;}
+.opt-details[open] .opt-chevron{transform:rotate(90deg);}
+.opt-details .vibes-grid{margin-top:6px;}
 
 /* ── MIDDLE PANEL ── */
 .middle-panel{display:flex;flex-direction:column;overflow:hidden;}
@@ -242,11 +256,17 @@ body{background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);position:r
       <h1>PaMs Dance Studio</h1>
       <p>Connect · Generate · Share</p>
     </div>
-    <div class="tab-group">
-      <button class="tab-btn active" onclick="switchTab('studio',this)">Studio</button>
-      <button class="tab-btn" onclick="switchTab('renders',this)">
-        Render Library <span class="tab-badge" id="renders-badge">0</span>
-      </button>
+    <div class="header-controls">
+      <div class="aspect-toggle">
+        <button class="aspect-btn active" onclick="setAspectRatio('9:16',this)" title="Portrait — TikTok / Reels">9:16</button>
+        <button class="aspect-btn" onclick="setAspectRatio('16:9',this)" title="Landscape — YouTube">16:9</button>
+      </div>
+      <div class="tab-group">
+        <button class="tab-btn active" onclick="switchTab('studio',this)">Studio</button>
+        <button class="tab-btn" onclick="switchTab('renders',this)">
+          Render Library <span class="tab-badge" id="renders-badge">0</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -283,6 +303,23 @@ body{background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);position:r
           <span class="sec-count">1 credit / scene</span>
         </div>
         <div class="vibes-grid" id="vibes-grid"></div>
+
+        <details class="opt-details">
+          <summary class="opt-summary">
+            <span class="opt-label">Pick a Background<span class="opt-optional">· optional</span></span>
+            <span class="opt-chevron">▸</span>
+          </summary>
+          <div class="vibes-grid" id="backgrounds-grid"></div>
+        </details>
+
+        <details class="opt-details">
+          <summary class="opt-summary">
+            <span class="opt-label">Pick a Camera<span class="opt-optional">· optional</span></span>
+            <span class="opt-chevron">▸</span>
+          </summary>
+          <div class="vibes-grid" id="cameras-grid"></div>
+        </details>
+
         <button class="generate-btn" title="Demo mode — connect wallet to generate">
           ✨ Generate Scene
         </button>
@@ -385,7 +422,7 @@ body{background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);position:r
           <div class="tracks-list" id="tracks-list"></div>
         </div>
 
-        <div class="suite-format">📐 9:16 Portrait – optimized for TikTok</div>
+        <div class="suite-format" id="suite-format-label">📐 9:16 Portrait – optimized for TikTok</div>
 
         <button class="suite-generate-btn locked" id="suite-generate-btn" title="Fill all 3 acts to enable">
           🔒 Fill all 3 acts
@@ -428,9 +465,13 @@ const PLAY  = `<svg width="10" height="10" viewBox="0 0 20 20" fill="currentColo
 const PAUSE = `<svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>`;
 
 let audio = null, audioIdx = null;
-let _scenes = [], _tracks = [];
+// Full unfiltered libraries (as fetched from data.json)
+let _scenes = [], _intros = [], _outros = [], _renders = [], _tracks = [];
+// The subset currently on screen, filtered to the active aspect ratio
+let _scenesVisible = [];
 let _actsState = {act1:false,act2:false,act3:false};
 let _trackListOpen = false;
+let _aspectRatio = '9:16';
 
 function switchTab(tab, btn) {
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -469,13 +510,31 @@ function buildVibes() {
 }
 
 function selectVibe(el) {
-  document.querySelectorAll('.vibe-tile').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('#vibes-grid .vibe-tile').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
+}
+
+// ── Optional pickers: Background / Camera ──────────────────────────────────────
+// Same shape as vibe tiles, but selection is a toggle (click again to clear)
+// and scoped to their own grid so they don't fight the vibe/each-other's state.
+function buildOptionalGrid(containerId, items) {
+  document.getElementById(containerId).innerHTML = items.map(it=>`
+    <div class="vibe-tile" onclick="toggleOptionalPick(this)">
+      <span class="vibe-emoji">${it.emoji}</span>
+      <span class="vibe-name">${it.label}</span>
+    </div>`).join('');
+}
+
+function toggleOptionalPick(el) {
+  const wasActive = el.classList.contains('active');
+  el.parentElement.querySelectorAll('.vibe-tile').forEach(t=>t.classList.remove('active'));
+  if (!wasActive) el.classList.add('active');
 }
 
 function buildIntroRow(scenes, containerId, countId, isOutro) {
   document.getElementById(countId).textContent = scenes.length;
   const cls = isOutro?'outro':'';
+  const emptyText = isOutro ? 'No outro scenes yet' : 'No intro scenes yet';
   document.getElementById(containerId).innerHTML = scenes.length
     ? scenes.map(s=>`
         <div class="intro-card ${cls}" onclick="toggleIntro(this)">
@@ -485,7 +544,7 @@ function buildIntroRow(scenes, containerId, countId, isOutro) {
           </div>
           <div class="intro-label">${s.title}</div>
         </div>`).join('')
-    : `<div class="empty-text" style="padding:8px 0">No scenes uploaded yet</div>`;
+    : `<div class="empty-text" style="padding:8px 0">${emptyText}</div>`;
 }
 
 function buildVibeFilters(scenes) {
@@ -516,7 +575,7 @@ function buildSceneGrid(scenes, filter) {
 }
 
 function renderScenes(filter) {
-  document.getElementById('scenes-body').innerHTML = buildVibeFilters(_scenes)+buildSceneGrid(_scenes,filter);
+  document.getElementById('scenes-body').innerHTML = buildVibeFilters(_scenesVisible)+buildSceneGrid(_scenesVisible,filter);
 }
 
 function setFilter(vibeId, el) {
@@ -524,7 +583,7 @@ function setFilter(vibeId, el) {
   el.classList.add('active');
   const body = document.getElementById('scenes-body');
   const existing = body.querySelector('.filter-bar');
-  body.innerHTML = (existing?existing.outerHTML:buildVibeFilters(_scenes))+buildSceneGrid(_scenes,vibeId);
+  body.innerHTML = (existing?existing.outerHTML:buildVibeFilters(_scenesVisible))+buildSceneGrid(_scenesVisible,vibeId);
 }
 
 function buildTracks(tracks) {
@@ -612,6 +671,54 @@ function toggleSlotVideo(el) {
   if (v) v.paused ? v.play() : v.pause();
 }
 
+function resetEditSuite() {
+  _actsState = {act1:false,act2:false,act3:false};
+  ['suite-intro-slot','suite-outro-slot'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.innerHTML = '<span class="suite-placeholder">+<br>Select</span>';
+    el.classList.remove('filled');
+  });
+  ['act1-slot','act2-slot','act3-slot'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.innerHTML = '<div class="suite-act-plus">+</div><div class="suite-act-empty">Empty</div>';
+    el.classList.remove('filled');
+  });
+  const btn = document.getElementById('suite-generate-btn');
+  btn.className = 'suite-generate-btn locked';
+  btn.textContent = '🔒 Fill all 3 acts';
+  btn.title = 'Fill all 3 acts to enable';
+}
+
+// Scenes/renders/intro/outro are each tagged with the aspect ratio they were
+// generated at (defaulting to 9:16, since that's the only ratio anyone has
+// generated content in so far) — switching ratios filters each library down
+// to that ratio's clips, same as the real studio, rather than reframing 9:16
+// footage into a 16:9 box.
+function ratioOf(x) { return (x && x.aspectRatio) || '9:16'; }
+
+function setAspectRatio(r, btn) {
+  _aspectRatio = r;
+  document.querySelectorAll('.aspect-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const introsVisible  = _intros.filter(s=>ratioOf(s)===r);
+  const outrosVisible  = _outros.filter(s=>ratioOf(s)===r);
+  _scenesVisible        = _scenes.filter(s=>ratioOf(s)===r);
+  const rendersVisible = _renders.filter(v=>ratioOf(v)===r);
+
+  buildIntroRow(introsVisible, 'intro-row', 'intro-count', false);
+  buildIntroRow(outrosVisible, 'outro-row', 'outro-count', true);
+  renderScenes(null);
+  buildRenders(rendersVisible);
+
+  resetEditSuite();
+  if (r === '9:16') prefillEditSuite(introsVisible, _scenesVisible, outrosVisible);
+
+  document.getElementById('suite-format-label').textContent = r === '16:9'
+    ? '📐 16:9 Landscape – optimized for YouTube'
+    : '📐 9:16 Portrait – optimized for TikTok';
+}
+
 function toggleTrackList() {
   _trackListOpen = !_trackListOpen;
   document.getElementById('track-list-panel').style.display = _trackListOpen?'block':'none';
@@ -667,16 +774,22 @@ function toggleAudio(idx, url) {
     const res = await fetch('./data.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    _scenes = data.scene_library||[];
-    const intros = data.intro_scenes||[];
-    const outros = data.outro_scenes||[];
+    _scenes  = data.scene_library||[];
+    _intros  = data.intro_scenes||[];
+    _outros  = data.outro_scenes||[];
+    _renders = data.render_library||[];
+    _scenesVisible = _scenes.filter(s=>ratioOf(s)===_aspectRatio);
+    const introsVisible = _intros.filter(s=>ratioOf(s)===_aspectRatio);
+    const outrosVisible = _outros.filter(s=>ratioOf(s)===_aspectRatio);
     buildCharGrid(data.custom_characters||[]);
-    buildIntroRow(intros,'intro-row','intro-count',false);
-    buildIntroRow(outros,'outro-row','outro-count',true);
+    buildOptionalGrid('backgrounds-grid', data.backgrounds||[]);
+    buildOptionalGrid('cameras-grid', data.cameras||[]);
+    buildIntroRow(introsVisible,'intro-row','intro-count',false);
+    buildIntroRow(outrosVisible,'outro-row','outro-count',true);
     renderScenes(null);
     buildTracks(data.tracks||[]);
-    buildRenders(data.render_library||[]);
-    prefillEditSuite(intros,_scenes,outros);
+    buildRenders(_renders.filter(v=>ratioOf(v)===_aspectRatio));
+    prefillEditSuite(introsVisible,_scenesVisible,outrosVisible);
   } catch(e) {
     document.getElementById('scenes-body').innerHTML =
       `<div class="empty"><span class="empty-icon">⚠️</span><p class="empty-text">Could not load data.json<br><span style="font-size:9px;opacity:.5">${e.message}</span></p></div>`;
