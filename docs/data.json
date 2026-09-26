@@ -100,6 +100,34 @@
       "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/w2helckjbzrtdcxcnqob.mp4",
       "thumbnailUrl": null,
       "duration": 5
+    },
+    {
+      "title": "Intro Scene 6",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/1789050965285-6f6nlnbg4d9.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
+    },
+    {
+      "title": "Intro Scene 7",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/1789072464591-2ohi6yjdtys.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
+    },
+    {
+      "title": "Intro Scene 8",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/1789072598451-y99h4hqcl18.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
+    },
+    {
+      "title": "Intro Scene 9",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/intro-scenes/1789772401608-ogzpeyvg6zp.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
     }
   ],
   "outro_scenes": [
@@ -132,6 +160,34 @@
       "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/zzpokfzvxcsagcakffe8.mp4",
       "thumbnailUrl": null,
       "duration": 5
+    },
+    {
+      "title": "Outro Scene 6",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/1789051517780-ojg697pgva8.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
+    },
+    {
+      "title": "Outro Scene 7",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/1789056839091-5kpo95sdt4k.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
+    },
+    {
+      "title": "Outro Scene 8",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/1789056991942-xcw8keflatk.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
+    },
+    {
+      "title": "Outro Scene 9",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/soniqute/outro-scenes/1789772549383-d7fh4kj3qht.mp4",
+      "thumbnailUrl": null,
+      "duration": 5,
+      "aspectRatio": "16:9"
     }
   ],
   "scene_library": [
@@ -222,6 +278,110 @@
       "vibeId": "groovy",
       "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6a485502b1df87a47af3fb49-groovy-1784150076602.mp4",
       "duration": "5s"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 3",
+      "vibeId": "groovy",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1db91f8d9258c658aebb7-groovy-1788992752201.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 3",
+      "vibeId": "electricslide",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1db91f8d9258c658aebb7-electricslide-1788992949783.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 3",
+      "vibeId": "hype",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1db91f8d9258c658aebb7-hype-1788993226052.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 3",
+      "vibeId": "fierce",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1db91f8d9258c658aebb7-fierce-1788993690472.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 4",
+      "vibeId": "fierce",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1db75f8d9258c658aebae-fierce-1789089993202.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": 0,
+      "characterName": "PaMs #0",
+      "vibeId": "hype",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/0-hype-1789094873557.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": 0,
+      "characterName": "PaMs #0",
+      "vibeId": "kpop",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/0-kpop-1789479908859.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 5",
+      "vibeId": "afrobeats",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1dc00f8d9258c658aebcc-afrobeats-1789653978266.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 5",
+      "vibeId": "hype",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1dc00f8d9258c658aebcc-hype-1789772863941.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 5",
+      "vibeId": "amapiano",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1dc00f8d9258c658aebcc-amapiano-1789773105272.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 5",
+      "vibeId": "electricslide",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1dc00f8d9258c658aebcc-electricslide-1789773441862.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 5",
+      "vibeId": "afrobeats",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1dc00f8d9258c658aebcc-afrobeats-1789774026160.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
+    },
+    {
+      "tokenId": null,
+      "characterName": "PaMs Custom 5",
+      "vibeId": "kpop",
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-scenes/custom-6aa1dc00f8d9258c658aebcc-kpop-1789774252725.mp4",
+      "duration": "5s",
+      "aspectRatio": "16:9"
     }
   ],
   "render_library": [
@@ -315,6 +475,46 @@
       "trackArtist": "SoniQute",
       "lyricStyle": "bold",
       "createdAt": "2026-04-05T00:00:00Z"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1789053030013.mp4",
+      "trackTitle": "Track 4",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-09-10T00:00:00Z",
+      "aspectRatio": "16:9"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1789480095477.mp4",
+      "trackTitle": "Track 5",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "bold",
+      "createdAt": "2026-09-15T00:00:00Z",
+      "aspectRatio": "16:9"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1789480829244.mp4",
+      "trackTitle": "Track 6",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "minimal",
+      "createdAt": "2026-09-15T00:00:00Z",
+      "aspectRatio": "16:9"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1789773618805.mp4",
+      "trackTitle": "Track 1",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "neon",
+      "createdAt": "2026-09-18T00:00:00Z",
+      "aspectRatio": "16:9"
+    },
+    {
+      "videoUrl": "https://storage.googleapis.com/soniqute-assets/qutie-pams-finals/pams-final-69b89516d42afb247ccc55ce-1789774395401.mp4",
+      "trackTitle": "Track 2",
+      "trackArtist": "SoniQute",
+      "lyricStyle": "bold",
+      "createdAt": "2026-09-18T00:00:00Z",
+      "aspectRatio": "16:9"
     }
   ],
   "tracks": [
