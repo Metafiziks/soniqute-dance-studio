@@ -215,6 +215,16 @@ body{background:linear-gradient(135deg,#000 0%,#111827 50%,#000 100%);position:r
 .render-track{font-size:10px;font-weight:700;color:rgba(255,255,255,.75);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .render-date{font-size:8px;color:rgba(255,255,255,.25);margin-top:2px;}
 
+/* ── 16:9 landscape mode: every video frame flips from portrait to landscape ── */
+.app.fmt-16-9 .intro-card{width:150px;}
+.app.fmt-16-9 .intro-video-wrap{aspect-ratio:16/9;}
+.app.fmt-16-9 .scenes-grid{grid-template-columns:repeat(2,1fr);}
+.app.fmt-16-9 .scene-video-wrap{aspect-ratio:16/9;}
+.app.fmt-16-9 .renders-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
+.app.fmt-16-9 .render-video-wrap{aspect-ratio:16/9;}
+.app.fmt-16-9 .suite-slot-sm{width:78px;height:44px;}
+.app.fmt-16-9 .suite-act-slot{aspect-ratio:16/9;}
+
 /* Utilities */
 .empty{display:flex;flex-direction:column;align-items:center;gap:6px;padding:20px;text-align:center;}
 .empty-icon{font-size:18px;opacity:.18;}
@@ -697,16 +707,17 @@ function resetEditSuite() {
 }
 
 // Scenes/renders/intro/outro are each tagged with the aspect ratio they were
-// generated at (defaulting to 9:16, since that's the only ratio anyone has
-// generated content in so far) — switching ratios filters each library down
-// to that ratio's clips, same as the real studio, rather than reframing 9:16
-// footage into a 16:9 box.
+// generated at (defaulting to 9:16 for older, untagged clips) — switching
+// ratios filters each library down to that ratio's clips, same as the real
+// studio, and the .fmt-16-9 class reframes every video card from portrait
+// to landscape to match.
 function ratioOf(x) { return (x && x.aspectRatio) || '9:16'; }
 
 function setAspectRatio(r, btn) {
   _aspectRatio = r;
   document.querySelectorAll('.aspect-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+  document.querySelector('.app').classList.toggle('fmt-16-9', r === '16:9');
 
   const introsVisible  = _intros.filter(s=>ratioOf(s)===r);
   const outrosVisible  = _outros.filter(s=>ratioOf(s)===r);
