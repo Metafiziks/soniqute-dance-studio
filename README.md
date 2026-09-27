@@ -2,6 +2,8 @@
 
 The full AI pipeline for the SoniQute PaMs collection: from generative character art through LoRA model training to an NFT-gated dance video studio for social media content generation.
 
+**Live showcase:** [metafiziks.github.io/soniqute-dance-studio](https://metafiziks.github.io/soniqute-dance-studio/) — a static, no-backend rebuild of the PaMs Dance Studio UI ([`docs/`](docs/)) populated with real generated media, for browsing the studio without a wallet or account.
+
 **Pipeline overview:**
 ```
 Trait design → Layer artwork (Forja Studios) → Generative Art Studio → 1,000 card images
@@ -20,10 +22,12 @@ An AI-powered dance video generation experience built for holders of the PaMs NF
 
 1. **Wallet connection + NFT gate** — users connect via MetaMask/WalletConnect; ownership of a PaMs NFT is verified on-chain before access is granted
 2. **AI video generation** — dance scenes are generated using WaveSpeed's Seedance model (image-to-video), with the user's NFT character as the subject
-3. **Vibe picker** — 12 dance vibes (Hype, Chill, Bounce, Fierce, Silly, Dramatic, Groovy, Robotic, Jersey Club, Afrobeats, House, …) each mapped to a tailored motion prompt
-4. **Music + lyric sync** — tracks are selected from a curated library; lyrics render as styled overlays using FFmpeg compositing via the Shotstack API
-5. **Scene stitching** — intro → dance scene → outro are stitched server-side into a final shareable MP4
-6. **Custom character images** — admins can upload custom character images per NFT token ID, overriding the default on-chain metadata image
+3. **Vibe picker** — 16 dance vibes (Hype, Chill, Bounce, Fierce, Silly, Dramatic, Groovy, Robotic, Jersey Club, Afrobeats, House, Litefeet, Amapiano, Salsa, Electric, K-Pop) each mapped to a tailored motion prompt
+4. **Optional background + camera** — 12 scene backgrounds (Dancefloor, Stage, Neon City, Space, …) and 12 camera moves (Tracking, Orbit 360, Drone, Push In, …) can each be layered onto a generation; both are optional prompt modifiers on top of the vibe
+5. **Aspect ratio** — every scene, render, and admin intro/outro clip is generated and tagged in one of two output shapes: 9:16 portrait (TikTok/Reels) or 16:9 landscape (YouTube). Each ratio keeps its own separate scene library, render library, and Edit Suite arrangement
+6. **Music + lyric sync** — tracks are selected from a curated library; lyrics render as styled overlays using FFmpeg compositing via the Shotstack API
+7. **Scene stitching (Edit Suite)** — an optional intro clip, three dance-scene "acts," and an optional outro are arranged with per-transition effects and stitched server-side into a final shareable MP4
+8. **Custom character images** — admins can upload character images not tied to any NFT token ID, as an alternative generation subject alongside a user's own NFTs
 
 ## Tech stack
 
@@ -43,6 +47,10 @@ An AI-powered dance video generation experience built for holders of the PaMs NF
 
 ```
 soniqute-dance-studio/
+├── docs/                   # Static GitHub Pages showcase (no backend/wallet required)
+│   ├── index.html          # Vanilla JS rebuild of the PaMs Dance Studio UI
+│   └── data.json           # Real intro/outro/scene/render media pulled from GCS
+│
 ├── frontend/               # Next.js 14 app
 │   ├── app/
 │   │   ├── pams-studio/    # Main dance studio page
@@ -88,12 +96,13 @@ soniqute-dance-studio/
 
 ### Dance video generation (PaMs Studio)
 ```
-User selects NFT → picks vibe + track
-  → POST /api/pams-studio/generate
+User selects NFT or uploaded character → picks vibe (+ optional background, camera move)
+  → POST /api/pams-studio/generate  { vibeId, aspectRatio, backgroundId?, cameraId? }
     → WaveSpeed image-to-video API (async polling)
-    → scene saved to PamsScene collection in GCS
+    → scene saved to PamsScene collection in GCS, tagged with its aspect ratio
+  → Edit Suite: drag scenes into Act 1 / 2 / 3, optional intro + outro, pick a track
   → POST /api/pams-studio/stitch
-    → FFmpeg: intro + dance scene + outro
+    → FFmpeg: intro + act 1 + act 2 + act 3 + outro, per-transition effects
     → lyric overlays composited if enabled
     → final MP4 uploaded to GCS
     → PamsFinalVideo record created
